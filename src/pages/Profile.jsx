@@ -1,38 +1,30 @@
-import { useEffect, useContext } from "react"
-import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
-import Container from "react-bootstrap/Container"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import { UserContext } from "../context/UserContext"
-import profileImg from "../assets/imgprofile.png" 
+// import { useEffect, useContext } from "react"
+import { Container, Row, Col,} from "react-bootstrap"
+// import { UserContext } from "../context/UserContext"
+
+import ProfileEdit from "../components/ProfileEdit"
+import Sidebar from "../components/Sidebar"
 
 const Profile = () => {
-  const { user, getProfile, logout } = useContext(UserContext)
+  const user = {
+    email: "usuario@ejemplo.com"
+  }
 
-  useEffect(() => {
-    getProfile()
-  }, [])
-
-  if (!user) {
-    return <p>Cargando perfil...</p>
+  const logout = () => {
+    console.log("Cerrando sesión...")
   }
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-center">
-        <Col md={6} className="text-center">
-          <h2>Perfil de usuario</h2>
-          <Card className="mb-5" style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={profileImg} alt="Perfil" />
-            <Card.Body className="text-center">
-              <Card.Title>Usuario</Card.Title>
-              <Card.Text>Email: {user.email}</Card.Text>
-              <Button variant="primary" onClick={logout}>
-                Cerrar sesión
-              </Button>
-            </Card.Body>
-          </Card>
+    <Container fluid className="mt-5">
+      <Row className="align-items-start">
+      
+        <Col md={2} className="px-4">
+          <Sidebar/>
+        </Col>
+
+      
+        <Col md={10}>
+          <ProfileEdit />
         </Col>
       </Row>
     </Container>

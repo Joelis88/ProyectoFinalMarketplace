@@ -1,8 +1,8 @@
 import { useState, useContext } from "react"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import {Form, Button} from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
 import { useNavigate } from "react-router-dom" 
+
 
 const Register = () => {
   const { register } = useContext(UserContext)
@@ -51,67 +51,95 @@ const Register = () => {
       await register(email, password)
       setFormEnviado(true)
       setMensajeError("")
-      setTimeout(() => navigate("/profile"), 2000) // Redirigir al perfil
+      setTimeout(() => navigate("/account"), 2000) // Redirigir al perfil
     } catch (error) {
       setMensajeError("Error al registrarse. Inténtalo de nuevo.")
     }
   }
 
   return (
-    <section className="container border border-light-subtle rounded-5 bg-white p-5">
-      <h2>Crea tu cuenta</h2>
+     <section className="container my-5 d-flex justify-content-center align-items-center">
+  <div className="bg-white rounded-5 shadow p-5" style={{ width: '100%', maxWidth: '700px' }}>
+    <h2 className="text-center mb-4">Crea una cuenta nueva</h2>
 
-      <Form onSubmit={validarDatos} noValidate>
-        {formEnviado && <p style={{ color: "green" }}>Registro exitoso</p>}
-        {mensajeError && <p style={{ color: "red" }}>{mensajeError}</p>}
+    <Form onSubmit={validarDatos} noValidate>
+      {formEnviado && <p className="text-success text-center">¡Registro exitoso!</p>}
+      {mensajeError && <p className="text-danger text-center">{mensajeError}</p>}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+      <div className="row g-3 mb-3">
+        <div className="col-md-6">
           <Form.Control
-            type="email"
-            name="email"
+            type="text"
+            placeholder="Nombre"
             size="lg"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Ingresa tu email"
-            required
+            onChange={(e) => setNombre(e.target.value)}
           />
-          {error.email && <p style={{ color: "red" }}>{error.email}</p>}
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            size="lg"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            placeholder="Ingresa tu contraseña"
-            required
-          />
-          {error.password && <p style={{ color: "red" }}>{error.password}</p>}
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Verificar Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="passwordOk"
-            size="lg"
-            onChange={(e) => setPwOk(e.target.value)}
-            value={pwOk}
-            placeholder="Repite tu contraseña"
-            required
-          />
-          {error.pwOk && <p style={{ color: "red" }}>{error.pwOk}</p>}
-        </Form.Group>
-
-        <div className="d-flex justify-content-center mb-4 mt-4">
-          <Button variant="dark" type="submit">Registrar</Button>
         </div>
-      </Form>
-    </section>
+        <div className="col-md-6">
+          <Form.Control
+            type="text"
+            placeholder="Apellido"
+            size="lg"
+            onChange={(e) => setApellido(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="email"
+          name="email"
+          size="lg"
+          placeholder="Correo electrónico"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          required
+        />
+        {error.email && <small className="text-danger">{error.email}</small>}
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="password"
+          name="password"
+          size="lg"
+          placeholder="Contraseña"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          required
+        />
+        {error.password && <small className="text-danger">{error.password}</small>}
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="password"
+          name="passwordOk"
+          size="lg"
+          placeholder="Confirmar contraseña"
+          onChange={(e) => setPwOk(e.target.value)}
+          value={pwOk}
+          required
+        />
+        {error.pwOk && <small className="text-danger">{error.pwOk}</small>}
+      </Form.Group>
+
+      <Form.Group className="mb-4">
+        <Form.Check
+          required
+          label="Acepto los términos y condiciones"
+          feedback="Debes aceptar antes de continuar."
+          feedbackType="invalid"
+        />
+      </Form.Group>
+
+      <div className="d-grid">
+        <Button variant="dark" size="lg" type="submit">Crear cuenta</Button>
+      </div>
+    </Form>
+  </div>
+</section>
+
   )
 }
 

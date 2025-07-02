@@ -40,11 +40,11 @@ const NavBar = () => {
 
      
           <Nav className="ms-auto d-flex align-items-center">
-            <NavDropdown   className="no-caret" title={<i class="fa-solid fa-user"></i>} id="navbarScrollingDropdown" align="end">
+            <NavDropdown   className="no-caret" title={<i className="fa-solid fa-user fa-2x"></i>} id="navbarScrollingDropdown" align="end">
               <NavDropdown.Item as={Link} to="/login">Ingresa</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/register">Crea tu cuenta</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/profile">Mi Perfil</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/account">Mi Perfil</NavDropdown.Item>
             </NavDropdown>
 
             <Link to="/publicar">
