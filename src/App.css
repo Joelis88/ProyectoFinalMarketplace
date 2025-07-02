@@ -4,6 +4,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body{
+  background-color: #f7f9fc;
+}
 .header{
   background-image:url(../src/assets/imgs/header.png);
   background-size: cover;

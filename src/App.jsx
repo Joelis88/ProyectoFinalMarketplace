@@ -6,9 +6,11 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import Profile from './pages/Profile'
+
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
+import Account from './pages/Account'
+import Profile from './pages/Profile'
 
 
 
@@ -31,9 +33,11 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+         <Route path="/account" element={<Account />} />
+         <Route path="/profile" element={<Profile />} />
 
         
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        {/* <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} /> */}
 
         <Route path='*' element={<NotFound/>}/>
       </Routes>
