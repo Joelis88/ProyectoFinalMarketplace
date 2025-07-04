@@ -24,14 +24,14 @@ function Home() {
         <Nav2/>
         <Header />
         <Container className="my-5">
-        <Row className="g-4">
-          {productos.map((producto) => (
-            <Col key={producto.id} xs={12} sm={6} md={4} lg={3}>
-              <CardProducto producto={producto} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+          <Row className="g-4">
+            {productos.map((producto) => (
+              <Col key={producto.id} xs={12} sm={6} md={4} lg={3}>
+                <CardProducto producto={producto} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </section>
     )
   }
