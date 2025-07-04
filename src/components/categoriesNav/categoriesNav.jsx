@@ -1,6 +1,8 @@
+import "./categoriesNav.css";
 import Nav from 'react-bootstrap/Nav';
 
-function Nav2() {
+
+function CategoriesNav() {
   return (
     <Nav defaultActiveKey="/home" as="ul"className="nav2">
       <Nav.Item as="li">
@@ -19,4 +21,4 @@ function Nav2() {
   );
 }
 
-export default Nav2;
+export default CategoriesNav;
