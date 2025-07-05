@@ -7,11 +7,8 @@ const Sidebar = ({ onLogout }) => {
       style={{ minHeight: "90vh" }}
     >
       <Nav className="flex-column">
-        <Nav.Link href="/account" className="text-dark mb-2">
-          <i className="fa-solid fa-circle-user me-2"></i> Mi cuenta
-        </Nav.Link>
         <Nav.Link href="/profile" className="text-dark mb-2">
-          <i className="fa-solid fa-circle-user me-2"></i> Perfil
+          <i className="fa-solid fa-circle-user me-2"></i> Mi cuenta
         </Nav.Link>
         <Nav.Link href="/publicaciones" className="text-dark mb-2">
           <i className="fa-solid fa-clipboard me-2"></i> Mis publicaciones
