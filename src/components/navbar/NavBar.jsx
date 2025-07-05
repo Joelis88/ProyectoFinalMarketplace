@@ -39,7 +39,7 @@ const NavBar = () => {
                 <NavDropdown.Item as={Link} to="/login">Ingresa</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/register">Crea tu cuenta</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/account">Mi Perfil</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/profile">Mi Perfil</NavDropdown.Item>
               </NavDropdown>
 
               <Link to="/publicar">

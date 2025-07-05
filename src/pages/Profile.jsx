@@ -16,13 +16,11 @@ const Profile = () => {
 
   return (
     <Container fluid className="mt-5">
-      <Row className="align-items-start">
-      
+      <Row className="align-items-start">      
         <Col md={2} className="px-4">
           <Sidebar/>
         </Col>
-
-      
+              
         <Col md={10}>
           <ProfileEdit />
         </Col>
