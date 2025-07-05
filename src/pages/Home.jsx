@@ -1,10 +1,10 @@
 
-import CardProducto from '../components/CardProducto'
-import Header from "../components/Header"
+import CardProducto from '../components/cardProducto/CardProducto'
+import Header from "../components/header/Header"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Nav2 from '../components/Nav2'
+import CategoriesNav from '../components/categoriesNav/categoriesNav'
 
 
 
@@ -21,7 +21,7 @@ function Home() {
    
   return (
       <section>
-        <Nav2/>
+        <CategoriesNav/>
         <Header />
         <Container className="my-5">
           <Row className="g-4">
