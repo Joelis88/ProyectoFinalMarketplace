@@ -1,5 +1,5 @@
 
-import CardProducto from '../components/CardProducto'
+import CardProducto from '../components/cardProducto/CardProducto'
 import Header from "../components/header/Header"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
