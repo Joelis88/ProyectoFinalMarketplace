@@ -51,7 +51,7 @@ const Register = () => {
       await register(email, password)
       setFormEnviado(true)
       setMensajeError("")
-      setTimeout(() => navigate("/account"), 2000) // Redirigir al perfil
+      setTimeout(() => navigate("/profile"), 2000) // Redirigir al perfil
     } catch (error) {
       setMensajeError("Error al registrarse. Inténtalo de nuevo.")
     }
