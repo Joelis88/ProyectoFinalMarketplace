@@ -1,0 +1,10 @@
+.publish-button {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.publish-button:hover {
+  background-color: #138496;
+}

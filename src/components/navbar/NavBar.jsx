@@ -6,8 +6,16 @@ import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useContext } from "react"
+import { UserContext } from "../../context/UserContext" 
 
-const NavBar = () => {
+const NavBar = ({ busqueda, setBusqueda }) => {
+
+  const { user, token, logout } = useContext(UserContext)
+
+  const handleInputChange = (e) => {
+    setBusqueda(e.target.value);
+  };
 
   return (
     <section>
@@ -26,6 +34,8 @@ const NavBar = () => {
                   placeholder="¿Qué estás buscando?"
                   className="rounded-pill px-4 me-2 border-0 shadow-sm"
                   aria-label="Search"
+                  value={busqueda}
+                  onChange={handleInputChange}
                 />
                 <Button variant="info" className="rounded-pill px-4">
                   <i className="fa-solid fa-magnifying-glass"></i>
@@ -33,19 +43,30 @@ const NavBar = () => {
               </Form>
             </div>
 
-
             <Nav className="ms-auto d-flex align-items-center">
-              <NavDropdown className="no-caret" title={<i className="fa-solid fa-user fa-2x"></i>} id="navbarScrollingDropdown" align="end">
-                <NavDropdown.Item as={Link} to="/login">Ingresa</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/register">Crea tu cuenta</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/profile">Mi Perfil</NavDropdown.Item>
-              </NavDropdown>
+              {token ? (
+                <NavDropdown
+                  className="no-caret"
+                  title={`Hola,  ${user?.nombre} ${user?.apellido}`}
+                  id="navbarScrollingDropdown"
+                  align="end"
+                >
+                  <NavDropdown.Item as={Link} to="/profile">Mi Perfil</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={logout}>Cerrar sesión</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <NavDropdown className="no-caret" title={<i className="fa-solid fa-user fa-2x"></i>} id="navbarScrollingDropdown" align="end">
+                  <NavDropdown.Item as={Link} to="/login">Ingresa</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/register">Crea tu cuenta</NavDropdown.Item>
+                </NavDropdown>
+              )}
 
               <Link to="/publicar">
                 <Button variant="outline-light" className="ms-3">Nueva publicación</Button>
               </Link>
             </Nav>
+
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -53,4 +74,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBar;
