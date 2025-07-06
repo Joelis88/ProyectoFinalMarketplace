@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "./CardProducto.css";
 
 const CardProducto = ({ articulo }) => {
@@ -15,7 +16,7 @@ const CardProducto = ({ articulo }) => {
       <div className="heart-icon" onClick={toggleLike}>
         <i className={`fa${liked ? 's' : 'r'} fa-heart`}></i>
       </div>
-
+      <Link to={`/producto/${articulo.id}`} className="text-decoration-none text-dark">
       <Card className="shadow-sm">
         <Card.Img
           variant="top"
@@ -49,6 +50,7 @@ const CardProducto = ({ articulo }) => {
           </div>
         </Card.Body>
       </Card>
+      </Link>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Account from './pages/Account'
 import Profile from './pages/Profile'
 import Post from './pages/Post'
+import ProductView from './pages/ProductView'
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/profile" element={<ProtectedRoute><Account /></ProtectedRoute>} />
         <Route path="/profile/edit" element={<Profile />} />
          <Route path="/publicar" element={<Post />} />
+         <Route path="/producto/:id" element={<ProductView />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
        <Footer />
