@@ -1,15 +1,13 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap"
 import Sidebar from "../components/Sidebar"
 import ProfileWelcomePanel from "../components/ProfileWelcomePanel"
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
 
 const Account = () => {
-  const user = {
-    id: 12345,
-    nombre: "Juan",
-    apellido: "Pérez",
-    email: "usuario@ejemplo.com",
-    imagen: null // no tiene imagen cargada
-  }
+ const { user } = useContext(UserContext); 
+ 
 
   const getInitials = (nombre, apellido) => {
     return `${nombre[0] || ""}${apellido[0] || ""}`.toUpperCase()

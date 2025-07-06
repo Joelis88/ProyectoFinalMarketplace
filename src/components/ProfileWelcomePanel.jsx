@@ -1,6 +1,12 @@
 import { Row, Col, Card, Button } from "react-bootstrap"
+import { UserContext } from "../context/UserContext"
+import { useContext } from "react";
 
-const ProfileWelcomePanel = ({user}) => {
+
+const ProfileWelcomePanel = () => {
+    const { user } = useContext(UserContext);
+
+    if (!user) return <p className="text-muted">Usuario no autenticado</p>;
 
     const getInitials = (nombre, apellido) => {
         return `${nombre[0] || ""}${apellido[0] || ""}`.toUpperCase()
