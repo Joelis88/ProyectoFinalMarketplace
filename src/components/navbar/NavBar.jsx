@@ -42,7 +42,7 @@ const NavBar = () => {
                 <NavDropdown.Item as={Link} to="/profile">Mi Perfil</NavDropdown.Item>
               </NavDropdown>
 
-              <Link to="/publicar">
+              <Link to="profile/publicarArticulo">
                 <Button variant="outline-light" className="ms-3">Nueva publicación</Button>
               </Link>
             </Nav>

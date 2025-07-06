@@ -9,36 +9,22 @@ import Login from './pages/Login'
 
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
-import Account from './pages/Account'
 import Profile from './pages/Profile'
-
-
-
-
-
-
-
-
+import ProfileEdit from './pages/ProfileEdit'
 
 function App() {
-  
- 
-
   return (
     <>
-      
-
       <NavBar />
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Account />} />
-        <Route path="/profile/edit" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profileEdit" element={<ProfileEdit />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
-       <Footer />
-  
+       <Footer />  
     </>
   )
 }
