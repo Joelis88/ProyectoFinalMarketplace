@@ -8,9 +8,8 @@ import { UserContext } from "../context/UserContext";
 const Account = () => {
  const { user } = useContext(UserContext); 
 
-  const logout = () => {
-    console.log("Cerrando sesión...")
-  }
+   const { logout } = useContext(UserContext);
+  
 
   return (
     <Container fluid className="mt-5">

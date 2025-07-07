@@ -7,7 +7,7 @@ import { articulos } from "../mockData/articulos";
 
 const MyPosts = () => {
   const { user } = useContext(UserContext); 
-
+   const { logout } = useContext(UserContext)
 
   const nombreVendedor = user?.nombre
   
@@ -17,7 +17,7 @@ const MyPosts = () => {
     <Container fluid className="mt-5">
       <Row className="align-items-start">
         <Col md={2} className="px-4">
-          <Sidebar />
+          <Sidebar onLogout={logout} />
         </Col>
 
         <Col md={10}>

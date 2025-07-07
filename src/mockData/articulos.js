@@ -8,7 +8,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Cartera en buen estado, color café oscuro.",
     categoria: "Mujer",
-    vendedor: "Pedro Soto"
+    vendedor: "Pedro Soto",
+    email: "pedro.soto@mail.com"
   },
   {
     id: 2,
@@ -19,7 +20,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Zapatillas sin uso, talla 42.",
     categoria: "Hombre",
-    vendedor: "Camila Rojas"
+    vendedor: "Camila Rojas",
+    email: "camila.rojas@mail.com"
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Chaqueta para niño, talla 8.",
     categoria: "Niñ@s",
-    vendedor: "Luis Fernández"
+    vendedor: "Luis Fernández",
+    email: "luis.fernandez@mail.com"
   },
   {
     id: 4,
@@ -41,7 +44,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Polera de algodón, talla M.",
     categoria: "Mujer",
-    vendedor: "Ana Morales"
+    vendedor: "Ana Morales",
+    email: "ana.morales@mail.com"
   },
   {
     id: 5,
@@ -52,7 +56,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Reloj dorado elegante.",
     categoria: "Accesorios",
-    vendedor: "Juan Pérez"
+    vendedor: "Juan Pérez",
+    email: "juan@ejemplo.com"
   },
   {
     id: 6,
@@ -63,7 +68,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Jeans azul oscuro, talla 32.",
     categoria: "Hombre",
-    vendedor: "Valentina Herrera"
+    vendedor: "Valentina Herrera",
+    email: "valentina.herrera@mail.com"
   },
   {
     id: 7,
@@ -74,7 +80,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Vestido largo, ideal para verano.",
     categoria: "Mujer",
-    vendedor: "Daniel Paredes"
+    vendedor: "Daniel Paredes",
+    email: "daniel.paredes@mail.com"
   },
   {
     id: 8,
@@ -85,7 +92,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Mochila resistente con varios compartimentos.",
     categoria: "Niñ@s",
-    vendedor: "Sofía Contreras"
+    vendedor: "Sofía Contreras",
+    email: "sofia.contreras@mail.com"
   },
   {
     id: 9,
@@ -96,7 +104,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Lentes UV400 polarizados.",
     categoria: "Accesorios",
-    vendedor: "Carlos Vidal"
+    vendedor: "Carlos Vidal",
+    email: "carlos.vidal@mail.com"
   },
   {
     id: 10,
@@ -108,6 +117,7 @@ export const articulos = [
     descripcion: "Chaqueta negra, corte clásico.",
     categoria: "Hombre",
     vendedor: "María Escobar",
+    email: "maria.escobar@mail.com"
       },
   {
     id: 11,
@@ -118,7 +128,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Blusa de gasa, talla S.",
     categoria: "Mujer",
-    vendedor: "Francisco Navarro"
+    vendedor: "Francisco Navarro",
+    email: "francisco.navarro@mail.com"
   },
   {
     id: 12,
@@ -129,7 +140,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Gorro tejido a mano.",
     categoria: "Accesorios",
-    vendedor: "Isabel Fuentes"
+    vendedor: "Isabel Fuentes",
+    email: "isabel.fuentes@mail.com"
   },
   {
     id: 13,
@@ -140,7 +152,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Shorts para niño, talla 10.",
     categoria: "Niñ@s",
-    vendedor: "Tomás Gallardo"
+    vendedor: "Tomás Gallardo",
+    email: "tomas.gallardo@mail.com"
   },
   {
     id: 14,
@@ -151,7 +164,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Pantalón negro, talla 38.",
     categoria: "Mujer",
-    vendedor: "Fernanda Salas"
+    vendedor: "Fernanda Salas",
+    email: "fernanda.salas@mail.com"
   },
   {
     id: 15,
@@ -163,6 +177,7 @@ export const articulos = [
     descripcion: "Cinturón unisex, ajustable.",
     categoria: "Accesorios",
     vendedor: "Ignacio Méndez",
+    email: "ignacio.mendez@mail.com"
       },
   {
     id: 16,
@@ -173,7 +188,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Zapatos negros, poco uso.",
     categoria: "Hombre",
-    vendedor: "Matías Orellana"
+    vendedor: "Matías Orellana",
+    email: "matias.orellana@mail.com"
   },
   {
     id: 17,
@@ -184,7 +200,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Vestido rosa para niña, talla 6.",
     categoria: "Niñ@s",
-    vendedor: "Daniela Reyes"
+    vendedor: "Daniela Reyes",
+    email: "daniela.reyes@mail.com"
   },
   {
     id: 18,
@@ -195,7 +212,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Bufanda de lana color burdeo.",
     categoria: "Accesorios",
-    vendedor: "Antonia Zamora"
+    vendedor: "Antonia Zamora",
+    email: "antonia.zamora@mail.com"
   },
   {
     id: 19,
@@ -206,7 +224,8 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Falda con bolsillos, talla M.",
     categoria: "Mujer",
-    vendedor: "Benjamín Cáceres"
+    vendedor: "Benjamín Cáceres",
+    email: "benjamin.caceres@mail.com"
   },
   {
     id: 20,
@@ -217,7 +236,8 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Chaqueta para niñ@, talla 12.",
     categoria: "Niñ@s",
-    vendedor: "Juan Pérez"
+    vendedor: "Juan Pérez",
+    email: "juan@ejemplo.com"
   }
 ];
 

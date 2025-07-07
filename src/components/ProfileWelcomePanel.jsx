@@ -13,7 +13,7 @@ const ProfileWelcomePanel = ({user}) => {
     }
 
     return(
-            <Card className="p-4 shadow-sm">
+            <Card className="p-4 shadow-sm w-75">
                 <Row className="align-items-center">
                     <Col md={2}>
                         {user.imagen ? (

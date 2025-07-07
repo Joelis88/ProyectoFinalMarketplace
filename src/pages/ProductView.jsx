@@ -24,7 +24,7 @@ function ProductView() {
 
       
         <Col md={5}>
-          <ContactSeller vendedor={articulo.vendedor} />
+          <ContactSeller vendedor={articulo.vendedor} email={articulo.email} />
         </Col>
       </Row>
     </Container>
