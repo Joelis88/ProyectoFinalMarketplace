@@ -47,7 +47,7 @@ const NavBar = ({ busqueda, setBusqueda }) => {
               {token ? (
                 <NavDropdown
                   className="no-caret"
-                  title={`Hola,  ${user?.nombre} ${user?.apellido}`}
+                  title={`Hola,  ${user?.nombre}`}
                   id="navbarScrollingDropdown"
                   align="end"
                 >
@@ -62,7 +62,7 @@ const NavBar = ({ busqueda, setBusqueda }) => {
                 </NavDropdown>
               )}
 
-              <Link to="/publicar">
+              <Link to="profile/publicarArticulo">
                 <Button variant="outline-light" className="ms-3">Nueva publicación</Button>
               </Link>
             </Nav>

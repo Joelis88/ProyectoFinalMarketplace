@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { Container, Row, Col,} from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
 
-import ProfileEdit from "../components/ProfileEdit"
+import ProfileEditPanel from "../components/ProfileEditPanel"
 import Sidebar from "../components/Sidebar"
 
 const Profile = () => {
@@ -18,11 +18,11 @@ const { user } = useContext(UserContext);
     <Container fluid className="mt-5">
       <Row className="align-items-start">      
         <Col md={2} className="px-4">
-          <Sidebar/>
+          <Sidebar onLogout={logout} />
         </Col>
               
         <Col md={10}>
-          <ProfileEdit />
+          <ProfileEditPanel />
         </Col>
       </Row>
     </Container>
