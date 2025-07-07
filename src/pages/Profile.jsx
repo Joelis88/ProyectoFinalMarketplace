@@ -1,15 +1,13 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap"
+// import { useEffect, useContext } from "react"
+import { Container, Row, Col,} from "react-bootstrap"
+// import { UserContext } from "../context/UserContext"
+
+import ProfileEditPanel from "../components/ProfileEditPanel"
 import Sidebar from "../components/Sidebar"
-import ProfileWelcomePanel from "../components/ProfileWelcomePanel"
 
 const Profile = () => {
   const user = {
-    id: 12345,
-    name: "Juan Perez",
-    email: "usuario@ejemplo.com",
-    phone: 912345678,
-    city: "Concepción",
-    picture: null // no tiene imagen cargada
+    email: "usuario@ejemplo.com"
   }
 
   const logout = () => {
@@ -18,13 +16,13 @@ const Profile = () => {
 
   return (
     <Container fluid className="mt-5">
-      <Row className="align-items-start">
+      <Row className="align-items-start">      
         <Col md={2} className="px-4">
-          <Sidebar onLogout={logout} />
+          <Sidebar/>
         </Col>
-
+              
         <Col md={10}>
-          <ProfileWelcomePanel user={user}/>
+          <ProfileEditPanel />
         </Col>
       </Row>
     </Container>
@@ -32,5 +30,3 @@ const Profile = () => {
 }
 
 export default Profile
-
-

@@ -5,20 +5,20 @@ import { UserContext } from "../context/UserContext";
 const ProfileEditPanel = () => {
   const { user, updateProfile } = useContext(UserContext)
 
-  const [name, setName] = useState("")
+  const [nombre, setNombre] = useState("")
   const [email, setEmail] = useState("")
-  const [city, setCity] = useState("")
-  const [phone, setPhone] = useState("")
-  const [picture, setPicture] = useState(null)
+  const [ciudad, setCiudad] = useState("")
+  const [telefono, setTelefono] = useState("")
+  const [foto, setFoto] = useState(null)
   const [mensaje, setMensaje] = useState("")
 
   useEffect(() => {
     if (user) {
-      setNombre(user.name || "")
+      setNombre(user.nombre || "")
       setEmail(user.email || "")
-      setCiudad(user.city || "")
-      setTelefono(user.phone || "")
-      setPicture(user.picture || "")
+      setCiudad(user.ciudad || "")
+      setTelefono(user.telefono || "")
+      setFoto(user.foto || "")
     }
   }, [user])
 
@@ -26,11 +26,11 @@ const ProfileEditPanel = () => {
     e.preventDefault();
 
     const datosActualizados = {
-      name,
+      nombre,
       email,
-      city,
-      phone,
-      picture,
+      ciudad,
+      telefono,
+      foto,
     };
 
     updateProfile(datosActualizados); //datos al backend
@@ -53,8 +53,8 @@ const ProfileEditPanel = () => {
               type="text"
               placeholder="Name"
               size="lg"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
             />
           </Form.Group>
 
@@ -74,8 +74,8 @@ const ProfileEditPanel = () => {
               type="text"
               placeholder="City"
               size="lg"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={ciudad}
+              onChange={(e) => setCiudad(e.target.value)}
             />
           </Form.Group>
 
@@ -84,8 +84,8 @@ const ProfileEditPanel = () => {
               type="tel"
               placeholder="Phone"
               size="lg"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={telefono}
+              onChange={(e) => setTelefono(e.target.value)}
             />
           </Form.Group>
 
