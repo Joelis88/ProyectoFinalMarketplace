@@ -34,7 +34,7 @@ const ProfileWelcomePanel = ({user}) => {
                             <Button variant="link" href="/profileEdit" className="me-2">
                                 Editar perfil
                             </Button>
-                            <Button variant="link" href="profile/publicarArticulo">
+                            <Button variant="link" href="/publicar">
                                 Nueva publicación
                             </Button>
                         </div>

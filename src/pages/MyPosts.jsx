@@ -9,8 +9,7 @@ const MyPosts = () => {
   const { user } = useContext(UserContext); 
 
 
-  const nombreVendedor = `${user?.nombre} ${user?.apellido}`;
-
+  const nombreVendedor = user?.nombre
   
   const misArticulos = articulos.filter(articulo => articulo.vendedor === nombreVendedor);
 
