@@ -1,11 +1,16 @@
-import { Nav } from "react-bootstrap"
+import { Nav } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ onLogout }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (onLogout) onLogout();   
+    navigate("/login");        
+  };
+
   return (
-    <div
-      className="bg-light rounded-4 shadow-sm py-4"
-      style={{ minHeight: "90vh" }}
-    >
+    <div className="bg-light rounded-4 shadow-sm py-4" style={{ minHeight: "90vh" }}>
       <Nav className="flex-column">
         <Nav.Link href="/profile" className="text-dark mb-2">
           <i className="fa-solid fa-circle-user me-2"></i> Mi cuenta
@@ -19,16 +24,12 @@ const Sidebar = ({ onLogout }) => {
         <Nav.Link href="/favoritos" className="text-dark mb-2">
           <i className="fa-solid fa-heart me-2"></i> Favoritos
         </Nav.Link>
-        <Nav.Link
-          href="/logout"
-          className="text-danger mt-3"
-          onClick={onLogout}
-        >
+        <Nav.Link onClick={handleLogout} className="text-danger mt-3" style={{ cursor: "pointer" }}>
           <i className="fa-solid fa-power-off me-2"></i> Cerrar sesión
         </Nav.Link>
       </Nav>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

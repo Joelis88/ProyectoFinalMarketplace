@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 import { articulos } from '../mockData/articulos';
 import CardProducto from '../components/cardProducto/CardProducto';
 import Container from 'react-bootstrap/Container';
@@ -9,6 +10,7 @@ import Sidebar from '../components/Sidebar';
 
 function Favorites() {
   const [favoritos, setFavoritos] = useState([]);
+  const { logout } = useContext(UserContext);
 
   useEffect(() => {
     const favoritosGuardados = JSON.parse(localStorage.getItem('favoritos')) || [];
@@ -22,7 +24,7 @@ function Favorites() {
       <Container fluid className="mt-5">
       <Row className="align-items-start">
         <Col md={2} className="px-4">
-          <Sidebar />
+          <Sidebar onLogout={logout} />
         </Col>
 
         <Col md={10}>

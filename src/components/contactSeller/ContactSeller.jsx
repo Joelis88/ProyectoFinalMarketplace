@@ -1,7 +1,10 @@
-import { Card, Form, Button } from 'react-bootstrap';
+import { Card, Form } from 'react-bootstrap';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext'
 import './ContactSeller.css'; 
 
-function ContactSeller({ vendedor }) {
+function ContactSeller({ vendedor, email }) {
+  const { user } = useContext(UserContext);
   const getIniciales = (nombre) => {
     if (!nombre) return '';
     const partes = nombre.trim().split(' ');
@@ -14,10 +17,8 @@ function ContactSeller({ vendedor }) {
   return (
     <Card className="shadow-sm mt-4" style={{ width: '100%', borderRadius: '0.75rem' }}>
       <Card.Body>
-     
         <div className="mb-2 text-muted fw-semibold">Vendedor</div>
 
-     
         <div className="d-flex align-items-center mb-4">
           <div className="avatar-iniciales me-3">
             {iniciales}
@@ -25,7 +26,6 @@ function ContactSeller({ vendedor }) {
           <div className="fw-bold fs-5">{vendedor}</div>
         </div>
 
-      
         <Form>
           <Form.Group className="mb-3" controlId="formMensaje">
             <Form.Label className="fw-semibold">Enviar mensaje</Form.Label>
@@ -36,12 +36,22 @@ function ContactSeller({ vendedor }) {
               className="shadow-sm"
             />
           </Form.Group>
-
           <div className="d-grid">
-            <Button type="submit" className="btn-personalizado">
-              Enviar mensaje
-            </Button>
-          </div>
+  <a
+    href={
+      user
+        ? `mailto:${email}?subject=Interesado%20en%20tu%20publicación&body=Hola%20${vendedor},%20me%20interesa%20tu%20artículo.`
+        : undefined
+    }
+    className={`btn btn-personalizado text-white text-center ${!user ? 'disabled' : ''}`}
+    style={{ textDecoration: 'none', pointerEvents: user ? 'auto' : 'none' }}
+  >
+    {user ? 'Enviar mensaje' : 'Inicia sesión para enviar'}
+  </a>
+</div>
+
+
+          
         </Form>
       </Card.Body>
     </Card>

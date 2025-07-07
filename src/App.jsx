@@ -19,6 +19,7 @@ import PageChildren from './pages/categories/PageChildren'
 import Accessories from './pages/categories/Accessories'
 import Favorites from './pages/Favorites'
 import MyPosts from './pages/MyPosts'
+import PageNotifications from './pages/PageNotifications'
 
 function App() {
    const [busqueda, setBusqueda] = useState("");
@@ -41,6 +42,7 @@ function App() {
          <Route path="/producto/:id" element={<ProductView />} />
          <Route path="/favoritos" element={<Favorites />} />
            <Route path="/publicaciones" element={<MyPosts />} />
+           <Route path="/interesados" element={<PageNotifications />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
        <Footer />  

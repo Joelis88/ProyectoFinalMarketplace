@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -6,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import './CardProducto.css';
 
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
+  const { user } = useContext(UserContext);
   const [liked, setLiked] = useState(false);
 
   // Verifica si el artículo está en favoritos al montar el componente
@@ -24,6 +26,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
     localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
     setLiked(!liked);
   };
+  const esPropietario = user?.nombre === articulo.vendedor;
 
   // Funciones simuladas para editar y eliminar
   const handleEditar = () => {
@@ -40,11 +43,11 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
 
   return (
     <div className="card-container" style={{ position: 'relative', width: '18rem' }}>
-      {!modoMisPublicaciones && (
-        <div className="heart-icon" onClick={toggleLike}>
-          <i className={`fa${liked ? 's' : 'r'} fa-heart`}></i>
-        </div>
-      )}
+     {user && !modoMisPublicaciones && !esPropietario && (
+  <div className="heart-icon" onClick={toggleLike}>
+    <i className={`fa${liked ? 's' : 'r'} fa-heart`}></i>
+  </div>
+)}
 
       <Link to={`/producto/${articulo.id}`} className="text-decoration-none text-dark">
         <Card className="shadow-sm">
@@ -70,36 +73,42 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
                 <i className="fa-solid fa-check me-2"></i>{articulo.estado}
               </ListGroup.Item>
             </ListGroup>
-
             <div className="d-flex justify-content-center gap-2">
-              {modoMisPublicaciones ? (
-                <>
-                  <Button
-                    variant="outline-dark"
-                    size="sm"
-                    className="rounded-pill px-3 d-flex align-items-center gap-2"
-                    onClick={handleEditar}
-                  >
-                    <i className="fa-solid fa-pen-to-square"></i>
-                    Editar
-                  </Button>
+  {modoMisPublicaciones ? (
+    <>
+      <Button
+        variant="outline-dark"
+        size="sm"
+        className="rounded-pill px-3 d-flex align-items-center gap-2"
+        onClick={handleEditar}
+      >
+        <i className="fa-solid fa-pen-to-square"></i>
+        Editar
+      </Button>
 
-                  <Button
-                    variant="outline-danger"
-                    size="sm"
-                    className="rounded-pill px-3 d-flex align-items-center gap-2"
-                    onClick={handleEliminar}
-                  >
-                    <i className="fa-solid fa-trash"></i>
-                    Eliminar
-                  </Button>
-                </>
-              ) : (
-                <Button variant="outline-danger" className="rounded-pill px-4 shadow-sm">
-                  Contactar
-                </Button>
-              )}
-            </div>
+      <Button
+        variant="outline-danger"
+        size="sm"
+        className="rounded-pill px-3 d-flex align-items-center gap-2"
+        onClick={handleEliminar}
+      >
+        <i className="fa-solid fa-trash"></i>
+        Eliminar
+      </Button>
+    </>
+  ) : user && !esPropietario ? (
+    <Button
+      variant="outline-danger"
+      className="rounded-pill px-4 shadow-sm"
+      as={Link}
+      to={`/producto/${articulo.id}`}
+    >
+      Contactar
+    </Button>
+  ) : null}
+</div>
+
+ 
           </Card.Body>
         </Card>
       </Link>
