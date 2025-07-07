@@ -16,7 +16,7 @@ const Post = () => {
         <div className="fs-4 fw-bold">🛍️ Artículo en Venta</div>
         {user ? (
           <div className="text-muted">
-            <strong>{user.nombre} {user.apellido}</strong>
+            <strong>{user.nombre}</strong>
            
          
           </div>
