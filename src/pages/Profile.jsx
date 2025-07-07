@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { Container, Row, Col,} from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
 
-import ProfileEdit from "../components/ProfileEdit"
+import ProfileEditPanel from "../components/ProfileEditPanel"
 import Sidebar from "../components/Sidebar"
 
 const Profile = () => {
@@ -22,7 +22,7 @@ const { user } = useContext(UserContext);
         </Col>
               
         <Col md={10}>
-          <ProfileEdit />
+          <ProfileEditPanel />
         </Col>
       </Row>
     </Container>

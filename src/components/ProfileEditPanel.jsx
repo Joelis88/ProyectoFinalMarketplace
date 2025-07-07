@@ -2,33 +2,31 @@ import { useState, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../context/UserContext";
 
-const ProfileEdit = () => {
-  const { user, updateProfile } = useContext(UserContext);
+const ProfileEditPanel = () => {
+  const { user, updateProfile } = useContext(UserContext)
 
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [email, setEmail] = useState("");
-  const [ciudad, setCiudad] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [foto, setFoto] = useState(null);
-  const [mensaje, setMensaje] = useState("");
+  const [nombre, setNombre] = useState("")
+  const [email, setEmail] = useState("")
+  const [ciudad, setCiudad] = useState("")
+  const [telefono, setTelefono] = useState("")
+  const [foto, setFoto] = useState(null)
+  const [mensaje, setMensaje] = useState("")
 
   useEffect(() => {
     if (user) {
-      setNombre(user.nombre || "");
-      setApellido(user.apellido || "");
-      setEmail(user.email || "");
-      setCiudad(user.ciudad || "");
-      setTelefono(user.telefono || "");
+      setNombre(user.nombre || "")
+      setEmail(user.email || "")
+      setCiudad(user.ciudad || "")
+      setTelefono(user.telefono || "")
+      setFoto(user.foto || "")
     }
-  }, [user]);
+  }, [user])
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const datosActualizados = {
       nombre,
-      apellido,
       email,
       ciudad,
       telefono,
@@ -50,31 +48,20 @@ const ProfileEdit = () => {
         {mensaje && <p className="text-success text-center">{mensaje}</p>}
 
         <Form onSubmit={handleSubmit}>
-          <div className="row g-3 mb-3">
-            <div className="col-md-6">
-              <Form.Control
-                type="text"
-                placeholder="Nombre"
-                size="lg"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-              />
-            </div>
-            <div className="col-md-6">
-              <Form.Control
-                type="text"
-                placeholder="Apellido"
-                size="lg"
-                value={apellido}
-                onChange={(e) => setApellido(e.target.value)}
-              />
-            </div>
-          </div>
+          <Form.Group className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Name"
+              size="lg"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+          </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Control
               type="email"
-              placeholder="Correo electrónico"
+              placeholder="Email"
               size="lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -85,7 +72,7 @@ const ProfileEdit = () => {
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
-              placeholder="Ciudad"
+              placeholder="City"
               size="lg"
               value={ciudad}
               onChange={(e) => setCiudad(e.target.value)}
@@ -95,7 +82,7 @@ const ProfileEdit = () => {
           <Form.Group className="mb-3">
             <Form.Control
               type="tel"
-              placeholder="Teléfono"
+              placeholder="Phone"
               size="lg"
               value={telefono}
               onChange={(e) => setTelefono(e.target.value)}
@@ -122,4 +109,4 @@ const ProfileEdit = () => {
   );
 };
 
-export default ProfileEdit;
+export default ProfileEditPanel;
