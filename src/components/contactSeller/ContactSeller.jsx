@@ -1,8 +1,7 @@
 import { Card, Form, Button } from 'react-bootstrap';
-import './ContactSeller.css'; // Para estilos personalizados (crea este archivo si no existe)
+import './ContactSeller.css'; 
 
 function ContactSeller({ vendedor }) {
-  // Obtener iniciales del nombre y apellido
   const getIniciales = (nombre) => {
     if (!nombre) return '';
     const partes = nombre.trim().split(' ');
@@ -15,10 +14,10 @@ function ContactSeller({ vendedor }) {
   return (
     <Card className="shadow-sm mt-4" style={{ width: '100%', borderRadius: '0.75rem' }}>
       <Card.Body>
-        {/* Encabezado */}
+     
         <div className="mb-2 text-muted fw-semibold">Vendedor</div>
 
-        {/* Avatar + Nombre */}
+     
         <div className="d-flex align-items-center mb-4">
           <div className="avatar-iniciales me-3">
             {iniciales}
@@ -26,7 +25,7 @@ function ContactSeller({ vendedor }) {
           <div className="fw-bold fs-5">{vendedor}</div>
         </div>
 
-        {/* Formulario */}
+      
         <Form>
           <Form.Group className="mb-3" controlId="formMensaje">
             <Form.Label className="fw-semibold">Enviar mensaje</Form.Label>
