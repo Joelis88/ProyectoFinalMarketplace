@@ -3,8 +3,8 @@ import { UserContext } from "../context/UserContext"
 import { useContext } from "react";
 
 
-const ProfileWelcomePanel = () => {
-    const { user } = useContext(UserContext);
+const ProfileWelcomePanel = ({user}) => {
+    // const { user } = useContext(UserContext);
 
     if (!user) return <p className="text-muted">Usuario no autenticado</p>;
 

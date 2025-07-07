@@ -47,7 +47,7 @@ const NavBar = ({ busqueda, setBusqueda }) => {
               {token ? (
                 <NavDropdown
                   className="no-caret"
-                  title={`Hola,  ${user?.nombre} ${user?.apellido}`}
+                  title={`Hola,  ${user?.nombre}`}
                   id="navbarScrollingDropdown"
                   align="end"
                 >
