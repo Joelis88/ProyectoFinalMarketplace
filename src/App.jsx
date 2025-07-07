@@ -17,6 +17,7 @@ import Women from './pages/categories/Women'
 import Men from './pages/categories/Men'
 import PageChildren from './pages/categories/PageChildren'
 import Accessories from './pages/categories/Accessories'
+import Favorites from './pages/Favorites'
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/niños" element={<PageChildren/>} />
             <Route path="/accesorios" element={<Accessories/>} />
          <Route path="/producto/:id" element={<ProductView />} />
+         <Route path="/favoritos" element={<Favorites />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
        <Footer />
