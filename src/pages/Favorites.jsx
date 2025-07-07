@@ -4,7 +4,8 @@ import CardProducto from '../components/cardProducto/CardProducto';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Header from '../components/header/Header';
+import Sidebar from '../components/Sidebar';
+
 
 function Favorites() {
   const [favoritos, setFavoritos] = useState([]);
@@ -17,10 +18,15 @@ function Favorites() {
 
   return (
     <section>
-      <Header />
-      <Container className="my-5">
-        <h2 className="mb-4">Tus Favoritos</h2>
-        <Row className="g-4">
+      
+      <Container fluid className="mt-5">
+      <Row className="align-items-start">
+        <Col md={2} className="px-4">
+          <Sidebar />
+        </Col>
+
+        <Col md={10}>
+          <Row className="g-4"><h2>Mis favoritos</h2>
           {favoritos.length > 0 ? (
             favoritos.map((articulo) => (
               <Col key={articulo.id} xs={12} sm={6} md={4} lg={3}>
@@ -31,7 +37,9 @@ function Favorites() {
             <p className="text-muted">No has marcado artículos como favoritos.</p>
           )}
         </Row>
-      </Container>
+        </Col>
+      </Row>
+    </Container>
     </section>
   );
 }

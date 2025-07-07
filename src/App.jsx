@@ -18,6 +18,7 @@ import Men from './pages/categories/Men'
 import PageChildren from './pages/categories/PageChildren'
 import Accessories from './pages/categories/Accessories'
 import Favorites from './pages/Favorites'
+import MyPosts from './pages/MyPosts'
 
 
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/accesorios" element={<Accessories/>} />
          <Route path="/producto/:id" element={<ProductView />} />
          <Route path="/favoritos" element={<Favorites />} />
+           <Route path="/publicaciones" element={<MyPosts />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
        <Footer />
