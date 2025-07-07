@@ -1,14 +1,14 @@
-// import { useEffect, useContext } from "react"
+import { useContext } from "react"
 import { Container, Row, Col,} from "react-bootstrap"
-// import { UserContext } from "../context/UserContext"
+import { UserContext } from "../context/UserContext"
 
 import ProfileEdit from "../components/ProfileEdit"
 import Sidebar from "../components/Sidebar"
 
 const Profile = () => {
-  const user = {
-    email: "usuario@ejemplo.com"
-  }
+  
+const { user } = useContext(UserContext); 
+
 
   const logout = () => {
     console.log("Cerrando sesión...")

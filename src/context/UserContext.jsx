@@ -3,82 +3,71 @@ import { createContext, useState, useEffect } from "react"
 export const UserContext = createContext()
 
 const UserProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || null)
-  const [email, setEmail] = useState(null)  // guarda email 
-  const [user, setUser] = useState(null)  // guarda perfil  
+  const [token, setToken] = useState(localStorage.getItem("token") || "fake-token") // simulado
+  const [email, setEmail] = useState(localStorage.getItem("email") || "juan@ejemplo.com")
+  const [user, setUser] = useState({
+    id: 1,
+    nombre: "Juan",
+    apellido: "Pérez",
+    email: "juan@ejemplo.com",
+    imagen: null,
+  })
 
-  // Función para perfil
+  // Función para obtener perfil (simulada)
   const getProfile = async () => {
     if (!token) return
-
     try {
-      const response = await fetch("", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error("No se pudo obtener el perfil")
+      // Simulamos una respuesta exitosa
+      const userData = {
+        id: 1,
+        nombre: "Juan",
+        apellido: "Pérez",
+        email: "juan@ejemplo.com",
+        imagen: null,
       }
-
-      const userData = await response.json()
-      setUser(userData) // Guarda los datos del usuario en el estado
+      setUser(userData)
     } catch (error) {
       console.error("Error al obtener el perfil:", error.message)
       setUser(null)
     }
   }
 
-  // Llama a getProfile cuando cambie el token
+  // Cargar perfil automáticamente si hay token
   useEffect(() => {
     if (token) {
       getProfile()
     }
-  }, [])
+  }, [token])
 
-
-  // Función login
+  // Función login (simulada porq no tenemos backend todavia)
   const login = async (email, password) => {
     try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      })
-
-      if (!response.ok) {
-        throw new Error("email o contraseña incorrecta")
+     
+      const fakeToken = "fake-token-123"
+      const fakeUser = {
+        id: 1,
+        nombre: "Juan",
+        apellido: "Pérez",
+        email,
+        imagen: null,
       }
 
-      const data = await response.json()
-      setToken(data.token)
-      setEmail(data.email)
-      localStorage.setItem("token", data.token)  // Guarda el token en el localStorage
-      localStorage.setItem("email", data.email)  // Guarda el email en el localStorage
+      setToken(fakeToken)
+      setEmail(email)
+      setUser(fakeUser)
+
+      localStorage.setItem("token", fakeToken)
+      localStorage.setItem("email", email)
     } catch (error) {
       console.error("Error en login:", error.message)
       alert(error.message)
     }
   }
 
-  // Función registro
+  // Función registro (simulada)
   const register = async (email, password) => {
     try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      if (!response.ok) {
-        throw new Error("No se pudo registrar el usuario")
-      }
-  
-      alert("Registro exitoso. Ahora inicia sesión.")
-  
+      alert("Registro simulado exitoso. Ahora inicia sesión.")
     } catch (error) {
       console.error("Error en registro:", error.message)
       alert(error.message)
@@ -95,10 +84,13 @@ const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ token, email, user, login, register, logout, getProfile }}>
+    <UserContext.Provider
+      value={{ token, email, user, login, register, logout, getProfile }}
+    >
       {children}
     </UserContext.Provider>
   )
 }
 
 export default UserProvider
+

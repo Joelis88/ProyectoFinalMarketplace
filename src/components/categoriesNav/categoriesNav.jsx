@@ -15,7 +15,7 @@ function CategoriesNav() {
         <Nav.Link href="/niños">Niñ@s</Nav.Link>
       </Nav.Item>
       <Nav.Item as="li">
-        <Nav.Link href="/ofertas">Accesorios</Nav.Link>
+        <Nav.Link href="/accesorios">Accesorios</Nav.Link>
       </Nav.Item>
     </Nav>
   );

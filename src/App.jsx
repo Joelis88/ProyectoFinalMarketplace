@@ -6,11 +6,18 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-
+import { Children, useState } from 'react'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import Account from './pages/Account'
 import Profile from './pages/Profile'
+import Post from './pages/Post'
+import ProductView from './pages/ProductView'
+import Women from './pages/categories/Women'
+import Men from './pages/categories/Men'
+import PageChildren from './pages/categories/PageChildren'
+import Accessories from './pages/categories/Accessories'
+import Favorites from './pages/Favorites'
 
 
 
@@ -21,20 +28,27 @@ import Profile from './pages/Profile'
 
 
 function App() {
-  
+   const [busqueda, setBusqueda] = useState("");
  
 
   return (
     <>
       
 
-      <NavBar />
+      <NavBar  busqueda={busqueda} setBusqueda={setBusqueda} />
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home busqueda={busqueda}/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Account />} />
+        <Route path="/profile" element={<ProtectedRoute><Account /></ProtectedRoute>} />
         <Route path="/profile/edit" element={<Profile />} />
+         <Route path="/publicar" element={<Post />} />
+          <Route path="/mujer" element={<Women />} />
+          <Route path="/hombre" element={<Men />} />
+          <Route path="/niños" element={<PageChildren/>} />
+            <Route path="/accesorios" element={<Accessories/>} />
+         <Route path="/producto/:id" element={<ProductView />} />
+         <Route path="/favoritos" element={<Favorites />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
        <Footer />

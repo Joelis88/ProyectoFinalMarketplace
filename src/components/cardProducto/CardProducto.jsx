@@ -1,45 +1,77 @@
-import "./CardProducto.css"
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import ListGroup from 'react-bootstrap/ListGroup'
-import { useState } from 'react'
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import "./CardProducto.css";
 
+const CardProducto = ({ articulo }) => {
+  const [liked, setLiked] = useState(false);
 
+  // Revisar si el artículo ya está en favoritos
+  useEffect(() => {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    setLiked(favoritos.includes(articulo.id));
+  }, [articulo.id]);
 
+  // Alternar favorito
+  const toggleLike = () => {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    let nuevosFavoritos;
 
-const CardProducto = () => {
-  const [liked, setLiked] = useState(false)
+    if (liked) {
+      nuevosFavoritos = favoritos.filter(id => id !== articulo.id);
+    } else {
+      nuevosFavoritos = [...favoritos, articulo.id];
+    }
 
-  const toggleLike = () => setLiked(!liked)
-  
+    localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
+    setLiked(!liked);
+  };
+
   return (
-    <> 
-      <div className="card-container" style={{ position: 'relative', width: '18rem' }}>
-       <div className="heart-icon" onClick={toggleLike}>
+    <div className="card-container" style={{ position: 'relative', width: '18rem' }}>
+      <div className="heart-icon" onClick={toggleLike}>
         <i className={`fa${liked ? 's' : 'r'} fa-heart`}></i>
       </div>
-     <Card>
-      <Card.Img variant="top" src="https://cl-dam-resizer.ecomm.cencosud.com/unsafe/adaptive-fit-in/640x0/filters:quality(75)/cl/paris/798066/variant/6842f169c87db81cfd0183ed/images/4f528dc8-1ed5-487f-9c4e-cd0c1fc211e9/798066-0401-001.jpg" />
-      <Card.Body>
-        <Card.Title>$Precio</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{<i className="fa-solid fa-location-dot"></i>} ubicación</Card.Subtitle>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the carrds content.
-        </Card.Text>
-           <ListGroup className="list-group-flush">
-             <ListGroup.Item> E{<i className="fa-solid fa-file-check"></i>}stado</ListGroup.Item>
-           </ListGroup>
-        <div className="d-flex justify-content-center mt-3">
-      <Button variant="outline-danger" className="rounded-pill px-4 shadow-sm">
-        Contactar
-      </Button>
-    </div>
-      </Card.Body>
-    </Card>
-     </div>
-    </>
-  )
-}
 
-export default CardProducto
+      <Link to={`/producto/${articulo.id}`} className="text-decoration-none text-dark">
+        <Card className="shadow-sm">
+          <Card.Img
+            variant="top"
+            src={articulo.imagen || 'https://via.placeholder.com/300'}
+            alt={articulo.titulo}
+            style={{ height: '200px', objectFit: 'cover' }}
+          />
+          <Card.Body>
+            <Card.Title>{articulo.titulo}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              <i className="fa-solid fa-location-dot me-1"></i>
+              {articulo.ubicacion}
+            </Card.Subtitle>
+            <Card.Text>{articulo.descripcion}</Card.Text>
+
+            <ListGroup className="list-group-flush mb-3">
+              <ListGroup.Item>
+                <i className="fa-solid fa-dollar-sign me-2"></i>
+                ${articulo.precio}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <i className="fa-solid fa-check me-2"></i>
+                {articulo.estado}
+              </ListGroup.Item>
+            </ListGroup>
+
+            <div className="d-flex justify-content-center">
+              <Button variant="outline-danger" className="rounded-pill px-4 shadow-sm">
+                Contactar
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      </Link>
+    </div>
+  );
+};
+
+export default CardProducto;
