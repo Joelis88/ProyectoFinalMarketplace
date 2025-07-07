@@ -51,7 +51,7 @@ const ProfileEditPanel = () => {
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
-              placeholder="Name"
+              placeholder="Nombre"
               size="lg"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
@@ -61,7 +61,7 @@ const ProfileEditPanel = () => {
           <Form.Group className="mb-3">
             <Form.Control
               type="email"
-              placeholder="Email"
+              placeholder="Correo electrónico"
               size="lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ const ProfileEditPanel = () => {
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
-              placeholder="City"
+              placeholder="Ciudad"
               size="lg"
               value={ciudad}
               onChange={(e) => setCiudad(e.target.value)}
@@ -82,7 +82,7 @@ const ProfileEditPanel = () => {
           <Form.Group className="mb-3">
             <Form.Control
               type="tel"
-              placeholder="Phone"
+              placeholder="Teléfono"
               size="lg"
               value={telefono}
               onChange={(e) => setTelefono(e.target.value)}

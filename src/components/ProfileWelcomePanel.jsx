@@ -16,8 +16,8 @@ const ProfileWelcomePanel = () => {
             <Card className="p-4 shadow-sm">
                 <Row className="align-items-center">
                     <Col md={2}>
-                        {user.foto ? (
-                            <img src={user.foto} alt="Foto de perfil" className="img-fluid rounded-circle"/>
+                        {user.imagen ? (
+                            <img src={user.imagen} alt="Foto de perfil" className="img-fluid rounded-circle"/>
                         ) : (
                             <div className="rounded-circle text-white d-flex align-items-center justify-content-center"
                                 style={{width: "100px", height: "100px", fontSize: "2rem", fontWeight: "bold", backgroundColor: "#17a2b8"}}>
