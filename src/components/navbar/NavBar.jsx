@@ -62,7 +62,7 @@ const NavBar = ({ busqueda, setBusqueda }) => {
                 </NavDropdown>
               )}
 
-              <Link to="profile/publicarArticulo">
+              <Link to="/profile/publicarArticulo">
                 <Button variant="outline-light" className="ms-3">Nueva publicación</Button>
               </Link>
             </Nav>

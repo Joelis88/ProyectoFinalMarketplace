@@ -8,13 +8,13 @@ import './CardProducto.css';
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
   const [liked, setLiked] = useState(false);
 
-
+  // Verifica si el artículo está en favoritos al montar el componente
   useEffect(() => {
     const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
     setLiked(favoritos.includes(articulo.id));
   }, [articulo.id]);
 
- 
+  // Alterna el estado de "me gusta" y actualiza localStorage
   const toggleLike = () => {
     const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
     const nuevosFavoritos = liked
@@ -25,15 +25,16 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
     setLiked(!liked);
   };
 
+  // Funciones simuladas para editar y eliminar
   const handleEditar = () => {
     alert(`Editar producto: ${articulo.titulo}`);
-  
+    // Aquí podrías redirigir a una ruta como /editar/:id
   };
 
   const handleEliminar = () => {
     if (confirm('¿Estás seguro de que deseas eliminar este artículo?')) {
       alert(`Eliminar producto: ${articulo.titulo}`);
-     
+      // Aquí podrías ejecutar una función que elimine el artículo
     }
   };
 
