@@ -7,9 +7,10 @@ const UserProvider = ({ children }) => {
   const [email, setEmail] = useState(localStorage.getItem("email") || "juan@ejemplo.com")
   const [user, setUser] = useState({
     id: 1,
-    nombre: "Juan",
-    apellido: "Pérez",
+    nombre: "Juan Pérez",
     email: "juan@ejemplo.com",
+    ciudad: "Concepción",
+    telefono: 912345678,
     imagen: null,
   })
 
@@ -20,9 +21,10 @@ const UserProvider = ({ children }) => {
       // Simulamos una respuesta exitosa
       const userData = {
         id: 1,
-        nombre: "Juan",
-        apellido: "Pérez",
+        nombre: "Juan Pérez",
         email: "juan@ejemplo.com",
+        ciudad: "Concepción",
+        telefono: 912345678,
         imagen: null,
       }
       setUser(userData)
@@ -47,7 +49,6 @@ const UserProvider = ({ children }) => {
       const fakeUser = {
         id: 1,
         nombre: "Juan",
-        apellido: "Pérez",
         email,
         imagen: null,
       }
