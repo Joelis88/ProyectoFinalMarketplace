@@ -32,7 +32,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<ProtectedRoute><Account /></ProtectedRoute>} />
         <Route path="/profileEdit" element={<Profile />} />
-         <Route path="/publicar" element={<Post />} />
+         <Route path="/profile/publicarArticulo" element={<Post />} />
           <Route path="/mujer" element={<Women />} />
           <Route path="/hombre" element={<Men />} />
           <Route path="/niños" element={<PageChildren/>} />
