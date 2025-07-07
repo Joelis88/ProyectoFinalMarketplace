@@ -52,7 +52,7 @@ export const articulos = [
     estado: "Nuevo",
     descripcion: "Reloj dorado elegante.",
     categoria: "Accesorios",
-    vendedor: "Juan Perez"
+    vendedor: "Juan Pérez"
   },
   {
     id: 6,
@@ -217,7 +217,7 @@ export const articulos = [
     estado: "Usado",
     descripcion: "Chaqueta para niñ@, talla 12.",
     categoria: "Niñ@s",
-    vendedor: "Juan Perez"
+    vendedor: "Juan Pérez"
   }
 ];
 
