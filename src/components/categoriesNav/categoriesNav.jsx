@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 
 function CategoriesNav() {
   return (
-    <Nav defaultActiveKey="/home" as="ul"className="nav2">
+    <Nav defaultActiveKey="/home"as="ul"className="nav2">
       <Nav.Item as="li">
         <Nav.Link href="/mujer">Mujer</Nav.Link>
       </Nav.Item>

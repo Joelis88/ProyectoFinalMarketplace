@@ -2,11 +2,11 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/navbar/NavBar'
 import Footer from './components/footer/Footer'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import { Children, useState } from 'react'
+import { Children, useState, useContext } from 'react'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import Account from './pages/Account'
@@ -20,32 +20,33 @@ import Accessories from './pages/categories/Accessories'
 import Favorites from './pages/Favorites'
 import MyPosts from './pages/MyPosts'
 import PageNotifications from './pages/PageNotifications'
+import { UserContext } from "./context/UserContext"
 
 function App() {
    const [busqueda, setBusqueda] = useState("");
- 
+   const {isAuthenticated} = useContext(UserContext) 
 
   return (
     <>
       <NavBar  busqueda={busqueda} setBusqueda={setBusqueda} />
       <Routes>
         <Route path='/' element={<Home busqueda={busqueda}/>}/>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-        <Route path="/profileEdit" element={<Profile />} />
-         <Route path="/profile/publicarArticulo" element={<Post />} />
-          <Route path="/mujer" element={<Women />} />
-          <Route path="/hombre" element={<Men />} />
-          <Route path="/niños" element={<PageChildren/>} />
-            <Route path="/accesorios" element={<Accessories/>} />
-         <Route path="/producto/:id" element={<ProductView />} />
-         <Route path="/favoritos" element={<Favorites />} />
-           <Route path="/publicaciones" element={<MyPosts />} />
-           <Route path="/interesados" element={<PageNotifications />} />
+        <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to='/profile' />} />  
+        <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to='/' />} />
+        <Route path="/profile" element={isAuthenticated ? <Account /> : <Navigate to='/login' />} />
+        <Route path="/profileEdit" element={isAuthenticated ? <Profile /> : <Navigate to='/login' />} />
+        <Route path="/profile/publicarArticulo" element={isAuthenticated ? <Post /> : <Navigate to='/login' />} />
+        <Route path="/mujer" element={<Women />} />
+        <Route path="/hombre" element={<Men />} />
+        <Route path="/niños" element={<PageChildren/>} />
+        <Route path="/accesorios" element={<Accessories/>} />
+        <Route path="/producto/:id" element={<ProductView />} />
+        <Route path="/favoritos" element={isAuthenticated ? <Favorites /> : <Navigate to='/login' />} />
+        <Route path="/publicaciones" element={isAuthenticated ? <MyPosts /> : <Navigate to='/login' /> } />
+        <Route path="/interesados" element={isAuthenticated ? <PageNotifications /> : <Navigate to='/login' />} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
-       <Footer />  
+      <Footer />  
     </>
   )
 }

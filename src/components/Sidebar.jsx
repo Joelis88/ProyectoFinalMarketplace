@@ -1,13 +1,12 @@
 import { Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react"
+import { UserContext } from "../context/UserContext";
 
 const Sidebar = ({ onLogout }) => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    if (onLogout) onLogout();   
-    navigate("/login");        
-  };
+  const { logout } = useContext(UserContext)
 
   return (
     <div className="bg-light rounded-4 shadow-sm py-4" style={{ minHeight: "90vh" }}>
@@ -24,7 +23,7 @@ const Sidebar = ({ onLogout }) => {
         <Nav.Link href="/favoritos" className="text-dark mb-2">
           <i className="fa-solid fa-heart me-2"></i> Favoritos
         </Nav.Link>
-        <Nav.Link onClick={handleLogout} className="text-danger mt-3" style={{ cursor: "pointer" }}>
+        <Nav.Link onClick={logout} className="text-danger mt-3" style={{ cursor: "pointer" }}>
           <i className="fa-solid fa-power-off me-2"></i> Cerrar sesión
         </Nav.Link>
       </Nav>
