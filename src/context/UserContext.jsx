@@ -17,13 +17,7 @@ const UserProvider = ({ children }) => {
   /* autenticación - true: usuario autenticado, false: usuario sin autenticar*/
   const [isAuthenticated, setisAuthenticated] = useState(true)
   /* ESTADO DE LOS ERRORES */
-  const [errorMessage, setErrorMessage] = useState('')
-    /* ESTADO DEL FORMULARIO LOGIN & REGISTER*/
-    // Para almacenar los campos de entrada
-    // const [user, setUser] = useState({
-    //     email: '',
-    //     password: ''
-    // })    
+  const [errorMessage, setErrorMessage] = useState('')    
 
   // Función para obtener perfil (simulada)
   const getProfile = async () => {
