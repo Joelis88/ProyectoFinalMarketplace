@@ -11,7 +11,7 @@ import { UserContext } from "../../context/UserContext"
 
 const NavBar = ({ busqueda, setBusqueda }) => {
 
-  const { user, token, logout } = useContext(UserContext)
+  const { user, token, logout, isAuthenticated } = useContext(UserContext)
 
   const handleInputChange = (e) => {
     setBusqueda(e.target.value);
@@ -44,7 +44,7 @@ const NavBar = ({ busqueda, setBusqueda }) => {
             </div>
 
             <Nav className="ms-auto d-flex align-items-center">
-              {token ? (
+              {isAuthenticated ? (
                 <NavDropdown
                   className="no-caret"
                   title={`Hola,  ${user?.nombre}`}
