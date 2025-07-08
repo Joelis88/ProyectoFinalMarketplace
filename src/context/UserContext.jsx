@@ -14,6 +14,17 @@ const UserProvider = ({ children }) => {
     imagen: null,
   })
 
+  /* autenticación - true: usuario autenticado, false: usuario sin autenticar*/
+  const [isAuthenticated, setisAuthenticated] = useState(true)
+  /* ESTADO DE LOS ERRORES */
+  const [errorMessage, setErrorMessage] = useState('')
+    /* ESTADO DEL FORMULARIO LOGIN & REGISTER*/
+    // Para almacenar los campos de entrada
+    // const [user, setUser] = useState({
+    //     email: '',
+    //     password: ''
+    // })    
+
   // Función para obtener perfil (simulada)
   const getProfile = async () => {
     if (!token) return
@@ -77,18 +88,29 @@ const UserProvider = ({ children }) => {
 
   // Función logout
   const logout = () => {
-    setToken(null)
-    setEmail(null)
-    setUser(null)
+    setisAuthenticated(false)
     localStorage.removeItem("token")
-    localStorage.removeItem("email")
+    user.email = ''
+    user.password = ''
   }
 
   return (
     <UserContext.Provider
-      value={{ token, email, user, login, register, logout, getProfile }}
-    >
-      {children}
+      value={{ 
+                token,
+                email,
+                user,
+                setUser,
+                login,
+                register,
+                logout,
+                getProfile,
+                isAuthenticated,
+                setisAuthenticated,
+                errorMessage,
+                setErrorMessage
+            }}>
+                {children}
     </UserContext.Provider>
   )
 }
