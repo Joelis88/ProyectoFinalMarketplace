@@ -4,7 +4,7 @@ import { UserContext } from '../../context/UserContext'
 import './ContactSeller.css'; 
 
 function ContactSeller({ vendedor, email }) {
-  const { user } = useContext(UserContext);
+  const { user, isAuthenticated } = useContext(UserContext);
   const getIniciales = (nombre) => {
     if (!nombre) return '';
     const partes = nombre.trim().split(' ');
@@ -39,14 +39,14 @@ function ContactSeller({ vendedor, email }) {
           <div className="d-grid">
   <a
     href={
-      user
+      isAuthenticated
         ? `mailto:${email}?subject=Interesado%20en%20tu%20publicación&body=Hola%20${vendedor},%20me%20interesa%20tu%20artículo.`
         : undefined
     }
-    className={`btn btn-personalizado text-white text-center ${!user ? 'disabled' : ''}`}
-    style={{ textDecoration: 'none', pointerEvents: user ? 'auto' : 'none' }}
+    className={`btn btn-personalizado text-white text-center ${!isAuthenticated ? 'disabled' : ''}`}
+    style={{ textDecoration: 'none', pointerEvents: isAuthenticated ? 'auto' : 'none' }}
   >
-    {user ? 'Enviar mensaje' : 'Inicia sesión para enviar'}
+    {isAuthenticated ? 'Enviar mensaje' : 'Inicia sesión para enviar'}
   </a>
 </div>
 

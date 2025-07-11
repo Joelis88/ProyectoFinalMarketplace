@@ -11,6 +11,7 @@ import { UserContext } from "../../context/UserContext"
 
 const NavBar = ({ busqueda, setBusqueda }) => {
 
+  // eslint-disable-next-line no-unused-vars
   const { user, token, logout, isAuthenticated } = useContext(UserContext)
 
   const handleInputChange = (e) => {

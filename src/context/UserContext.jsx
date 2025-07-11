@@ -50,10 +50,10 @@ const UserProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
      
-      const fakeToken = "fake-token-123"
+      const eToken = "fake-token-123"
       const fakeUser = {
         id: 1,
-        nombre: "Juan",
+        nombre: "Juan Pérez",
         email,
         imagen: null,
       }
