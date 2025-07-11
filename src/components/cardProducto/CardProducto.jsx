@@ -45,7 +45,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
     <div className="card-container" style={{ position: 'relative', width: '18rem' }}>
      {user && !modoMisPublicaciones && !esPropietario && (
   <div className="heart-icon" onClick={toggleLike}>
-    <i className={`fa${liked ? 's' : 'r'} fa-heart`}></i>
+    <i className={`${liked ? 'fas' : 'far'} fa-heart`}></i>
   </div>
 )}
 
