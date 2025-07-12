@@ -4,7 +4,7 @@ import { UserContext } from '../../context/UserContext'
 import './ContactSeller.css'; 
 
 function ContactSeller({ vendedor, email }) {
-  const { user, isAuthenticated } = useContext(UserContext);
+  const {  isAuthenticated } = useContext(UserContext);
   const getIniciales = (nombre) => {
     if (!nombre) return '';
     const partes = nombre.trim().split(' ');
