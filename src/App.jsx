@@ -36,10 +36,10 @@ function App() {
         <Route path="/profile" element={isAuthenticated ? <Account /> : <Navigate to='/login' />} />
         <Route path="/profileEdit" element={isAuthenticated ? <Profile /> : <Navigate to='/login' />} />
         <Route path="/profile/publicarArticulo" element={isAuthenticated ? <Post /> : <Navigate to='/login' />} />
-        <Route path="/mujer" element={<Women />} />
-        <Route path="/hombre" element={<Men />} />
-        <Route path="/niños" element={<PageChildren/>} />
-        <Route path="/accesorios" element={<Accessories/>} />
+        <Route path="/mujer" element={<ProtectedRoute><Women /></ProtectedRoute>} />
+        <Route path="/hombre" element={<ProtectedRoute><Men /></ProtectedRoute>} />
+        <Route path="/niños" element={<ProtectedRoute><PageChildren /></ProtectedRoute>} />
+        <Route path="/accesorios" element={<ProtectedRoute><Accessories /></ProtectedRoute>} />
         <Route path="/producto/:id" element={<ProductView />} />
         <Route path="/favoritos" element={isAuthenticated ? <Favorites /> : <Navigate to='/login' />} />
         <Route path="/publicaciones" element={isAuthenticated ? <MyPosts /> : <Navigate to='/login' /> } />
