@@ -1,0 +1,33 @@
+.nav2 {
+  justify-content: center;
+  gap: 2rem; /* separa los ítems */
+  background-color: white;
+  padding: 1rem 0;
+}
+
+.nav2 .nav-link {
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav2 .nav-link:hover {
+  color: black;
+}
+
+.nav2 .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: black;
+  transition: width 0.3s;
+}
+
+.nav2 .nav-link:hover::after {
+  width: 100%;
+}

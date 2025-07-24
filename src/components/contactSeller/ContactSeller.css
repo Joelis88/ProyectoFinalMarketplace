@@ -1,0 +1,30 @@
+.avatar-iniciales {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #dceafe;
+  color: #17a2b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-personalizado {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-personalizado:hover {
+  background-color: #17a2b8;
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

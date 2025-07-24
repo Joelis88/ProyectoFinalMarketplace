@@ -1,0 +1,23 @@
+.search-bar input[type="search"] {
+  height: 45px;
+  font-size: 1rem;
+  border-radius: 50px !important;
+}
+
+.search-bar button {
+  height: 45px;
+  font-size: 1rem;
+  border-radius: 50px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #138496;
+}
+
+.no-caret .dropdown-toggle::after {
+  display: none;
+}
