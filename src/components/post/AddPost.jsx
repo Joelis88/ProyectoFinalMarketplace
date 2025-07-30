@@ -20,7 +20,8 @@ const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
 
-  useEffect(() => {
+ useEffect(() => {
+  if (modoEdicion && productoInicial?.title) {
     setFormulario({
       title: productoInicial.title || "",
       description: productoInicial.description || "",
@@ -35,7 +36,9 @@ const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
       setPreviewUrl(productoInicial.image_url);
       setImageUrl(productoInicial.image_url);
     }
-  }, [productoInicial]);
+  }
+}, [productoInicial, modoEdicion]);
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
