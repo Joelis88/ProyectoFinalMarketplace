@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../utils/formatPrice";
 import "./CardProducto.css";
 
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
@@ -86,7 +87,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
             <Card.Text>{articulo.description}</Card.Text>
             <ListGroup className="list-group-flush mb-3">
               <ListGroup.Item>
-                <i className="fa-solid fa-dollar-sign me-2"></i>{articulo.price}
+                <i className="fa-solid fa-dollar-sign me-2"></i>{formatPrice(articulo.price)}
               </ListGroup.Item>
               <ListGroup.Item>
                 <i className="fa-solid fa-check me-2"></i>{articulo.condition}

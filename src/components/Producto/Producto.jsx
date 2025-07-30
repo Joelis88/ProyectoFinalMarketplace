@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import { formatPrice } from '../utils/formatPrice';
 
 
 import "./producto.css"
@@ -38,7 +39,7 @@ const Producto = ({ articulo }) => {
       <div className="d-flex justify-content-between align-items-center mb-3">
         <Card.Title className="fs-3 fw-bold mb-0">{articulo.title}</Card.Title>
         <h4 className="text-success fw-bold mb-0">
-          <i className="fa-solid fa-dollar-sign me-1"></i>{articulo.price}
+          <i className="fa-solid fa-dollar-sign me-1"></i>{formatPrice(articulo.price)}
         </h4>
       </div>
 
