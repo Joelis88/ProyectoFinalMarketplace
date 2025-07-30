@@ -77,7 +77,7 @@ useEffect(() => {
         <Card.Title className="mb-4 text-center">Publica tu artículo</Card.Title>
 
         <Form onSubmit={handleSubmit}>
-          {/* SUBIDA DE image_url */}
+         
           <Form.Group className="mb-3 text-center">
             <Form.Label htmlFor="upload-image" className="btn btn-outline-secondary">
               <FaUpload className="me-2" /> Subir desde tu dispositivo
@@ -90,7 +90,6 @@ useEffect(() => {
             />
           </Form.Group>
 
-          {/* URL DE image_url */}
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
@@ -100,14 +99,14 @@ useEffect(() => {
             />
           </Form.Group>
 
-          {/* PREVIEW */}
+         
           {previewUrl && (
             <div className="text-center mb-3">
               <Image src={previewUrl} alt="Vista previa" fluid rounded style={{ maxHeight: '200px' }} />
             </div>
           )}
 
-          {/* title */}
+        
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
@@ -117,7 +116,7 @@ useEffect(() => {
             />
           </Form.Group>
 
-          {/* price */}
+     
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
@@ -127,7 +126,7 @@ useEffect(() => {
             />
           </Form.Group>
 
-          {/* category */}
+         
           <Form.Group className="mb-3">
             <Form.Select
               value={category}
@@ -141,7 +140,7 @@ useEffect(() => {
             </Form.Select>
           </Form.Group>
 
-          {/* UBICACIÓN */}
+      
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
@@ -151,7 +150,7 @@ useEffect(() => {
             />
           </Form.Group>
 
-          {/* condition */}
+      
           <Form.Group className="mb-3">
             <Form.Select
               value={condition}
@@ -163,7 +162,7 @@ useEffect(() => {
             </Form.Select>
           </Form.Group>
 
-          {/* DESCRIPCIÓN */}
+         
           <Form.Group className="mb-4">
             <Form.Label>Descripción</Form.Label>
             <Form.Control
@@ -174,7 +173,7 @@ useEffect(() => {
             />
           </Form.Group>
 
-          {/* BOTÓN */}
+         
           <div className="d-grid">
             <Button className="publish-button" type="submit">
               Publicar

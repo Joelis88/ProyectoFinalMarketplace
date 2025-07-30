@@ -5,12 +5,12 @@ import './ContactSeller.css';
 
 function ContactSeller({ vendedor, email }) {
   const {  isAuthenticated } = useContext(UserContext);
-  const getIniciales = (nombre) => {
-    if (!nombre) return '';
-    const partes = nombre.trim().split(' ');
-    const iniciales = partes.slice(0, 2).map(p => p[0].toUpperCase()).join('');
-    return iniciales;
-  };
+  
+ const getIniciales = (nombreCompleto) => {
+  if (!nombreCompleto || typeof nombreCompleto !== 'string') return '';
+  const partes = nombreCompleto.trim().split(' ');
+  return partes.slice(0, 2).map(p => p[0]?.toUpperCase() || '').join('');
+};
 
   const iniciales = getIniciales(vendedor);
 
@@ -23,7 +23,9 @@ function ContactSeller({ vendedor, email }) {
           <div className="avatar-iniciales me-3">
             {iniciales}
           </div>
-          <div className="fw-bold fs-5">{vendedor}</div>
+          <div className="fw-bold fs-5">
+  {vendedor}
+</div>
         </div>
 
         <Form>

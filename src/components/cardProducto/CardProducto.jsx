@@ -15,7 +15,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
 
   const [liked, setLiked] = useState(false);
 
-  const esPropietario = user?.nombre === articulo.vendedor;
+  const esPropietario = user?.id === articulo.user_id;
 
   useEffect(() => {
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
@@ -118,7 +118,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
             </>
           ) : isAuthenticated && !esPropietario ? (
             <Link
-              to={`/products/${articulo.id}`}
+              to={`/products/${articulo.user_id}`}
               className="btn btn-outline-danger rounded-pill px-4 shadow-sm"
             >
               Contactar
