@@ -42,6 +42,31 @@ const getProfile = async () => {
     }
   }, [token]);
 
+  const updateProfile = async (profileData) => {
+  try {
+    const res = await fetch("http://localhost:3001/api/profile", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(profileData),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Error al actualizar el perfil");
+    }
+
+    setUser(data.data); // Actualiza el estado con los datos nuevos
+    alert("Perfil actualizado con éxito.");
+  } catch (error) {
+    console.error("Error al actualizar perfil:", error.message);
+    alert(error.message);
+  }
+};
+
   const login = async (email, password) => {
   try {
     console.log("Enviando datos de registro:", { email, password });
@@ -119,6 +144,7 @@ setTimeout(() => {
         register,
         logout,
         getProfile,
+        updateProfile,
         isAuthenticated,
         setIsAuthenticated,
         errorMessage,
