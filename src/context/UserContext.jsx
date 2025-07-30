@@ -60,12 +60,18 @@ const getProfile = async () => {
 
     const token = data.data.token;
 
-    setToken(token);
-    setEmail(email);
-    setIsAuthenticated(true);
-    localStorage.setItem("token", token);
-    localStorage.setItem("email", email);
-    await getProfile();
+localStorage.setItem("token", token);
+localStorage.setItem("email", email);
+
+setToken(token);
+setEmail(email);
+setIsAuthenticated(true);
+
+
+setTimeout(() => {
+  getProfile();
+}, 100);
+
   } catch (error) {
     console.error("Error en login:", error.message);
     setErrorMessage(error.message);
@@ -73,12 +79,12 @@ const getProfile = async () => {
   }
 };
 
-  const register = async (email, password, first_name, last_name) => {
+  const register = async (email, password, first_name, last_name, phone, address) => {
     try {
       const response = await fetch("http://localhost:3001/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, first_name, last_name, phone: "",address: ""  }),
+        body: JSON.stringify({ email, password, first_name, last_name, phone, address }),
       });
 
        if (!response.ok) {
