@@ -22,9 +22,12 @@ const Producto = ({ articulo }) => {
       src={articulo.image_url}
       alt={articulo.title}
       style={{
-        height: '400px',
-        objectFit: 'cover',
-        borderRadius: '0.75rem 0.75rem 0 0',
+        width: '100%',
+    height: 'auto', 
+    borderRadius: '0.75rem 0.75rem 0 0',
+    maxHeight: '500px', 
+    objectFit: 'contain', 
+    backgroundColor: '#f8f9fa'
       }}
     />
 
