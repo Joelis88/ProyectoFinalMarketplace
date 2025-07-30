@@ -23,6 +23,7 @@ import AddPost from './components/post/AddPost'
 import PageNotifications from './pages/PageNotifications'
 import { UserContext } from "./context/UserContext"
 import { SearchProvider } from './context/SearchContext'
+import EditPost from './pages/EditPost'
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/niños" element={<ProtectedRoute><PageChildren /></ProtectedRoute>} />
         <Route path="/accesorios" element={<ProtectedRoute><Accessories /></ProtectedRoute>} />
         <Route path="/products/:id" element={<ProductView />} />
+        <Route path="/edit/:id" element={<EditPost />} />
         <Route path="/add" element={isAuthenticated ? <AddPost onAgregar={handleAgregarProducto} /> : <Navigate to='/login' />} />
         <Route path="/favoritos" element={isAuthenticated ? <Favorites /> : <Navigate to='/login' />} />
         <Route path="/publicaciones" element={isAuthenticated ? <MyPosts /> : <Navigate to='/login' /> } />

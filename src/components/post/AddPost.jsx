@@ -1,80 +1,76 @@
 import "./post.css";
-import { useState } from 'react';
-import { Form, Button, Card, Container, Image } from 'react-bootstrap';
-import { FaUpload } from 'react-icons/fa';
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Form, Button, Card, Container, Image } from "react-bootstrap";
+import { FaUpload } from "react-icons/fa";
 import { UserContext } from "../../context/UserContext";
 
+const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
+  const { user } = useContext(UserContext) || {};
 
+  const [formulario, setFormulario] = useState({
+    title: "",
+    description: "",
+    price: "",
+    category: "",
+    image_url: "",
+    condition: "nuevo",
+    location: "",
+  });
 
-function AddPost({ onAgregar }) {
-  const { user } = useContext(UserContext);
-  const [imageUrl, setImageUrl] = useState('');
-  const [previewUrl, setPreviewUrl] = useState(null);
-  const [title, settitle] = useState('');
-  const [price, setprice] = useState('');
-  const [location, setlocation] = useState('');
-  const [condition, setcondition] = useState('');
-  const [description, setdescription] = useState('');
-  const [category, setcategory] = useState('');
-  // const [vendedor, setVendedor] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    setFormulario({
+      title: productoInicial.title || "",
+      description: productoInicial.description || "",
+      price: productoInicial.price || "",
+      category: productoInicial.category || "",
+      image_url: productoInicial.image_url || "",
+      condition: productoInicial.condition || "nuevo",
+      location: productoInicial.location || "",
+    });
 
-    const productData  = {
-      image_url: previewUrl,
-      title,
-      price,
-      location,
-      condition,
-      description,
-      category,
-      vendedor: user?.nombre || "Anónimo",
-      email: user?.email || ""
-    };
-
-    onAgregar(productData);
-
-    // Limpiar formulario
-    setImageUrl('');
-    setPreviewUrl(null);
-    settitle('');
-    setprice('');
-    setlocation('');
-    setcondition('');
-    setdescription('');
-    setcategory('');
-   
-};
-
-  const handleUrlChange = (e) => {
-    const url = e.target.value;
-    setImageUrl(url);
-    setPreviewUrl(url);
-  };
+    if (productoInicial.image_url) {
+      setPreviewUrl(productoInicial.image_url);
+      setImageUrl(productoInicial.image_url);
+    }
+  }, [productoInicial]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPreviewUrl(URL.createObjectURL(file));
-      setImageUrl('');
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+        setImageUrl("");
+        setFormulario((prev) => ({ ...prev, image_url: reader.result }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  console.log('AddPost props:', { onAgregar });
+  const handleUrlChange = (e) => {
+    const url = e.target.value;
+    setImageUrl(url);
+    setFormulario((prev) => ({ ...prev, image_url: url }));
+    setPreviewUrl(url);
+  };
 
-useEffect(() => {
-  if (typeof onAgregar !== 'function') {
-    console.error('Prop onAgregar no es función');
-  }
-}, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAgregar(formulario);
+  };
+
+  const updateField = (field) => (value) =>
+    setFormulario((prev) => ({ ...prev, [field]: value }));
 
   return (
     <Container className="d-flex justify-content-center align-items-center mt-5 mb-5">
-      <Card style={{ width: '100%', maxWidth: '600px' }} className="p-4 shadow-sm">
-        <Card.Title className="mb-4 text-center">Publica tu artículo</Card.Title>
+      <Card style={{ width: "100%", maxWidth: "600px" }} className="p-4 shadow-sm">
+        <Card.Title className="mb-4 text-center">
+          {modoEdicion ? "Editar Artículo" : "Publica tu Artículo"}
+        </Card.Title>
 
         <Form onSubmit={handleSubmit}>
          
@@ -85,52 +81,53 @@ useEffect(() => {
             <Form.Control
               type="file"
               id="upload-image"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               onChange={handleFileChange}
             />
           </Form.Group>
 
+         
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
-              placeholder="O pega una URL de image_url"
+              placeholder="O pega una URL de imagen"
               value={imageUrl}
               onChange={handleUrlChange}
             />
           </Form.Group>
 
-         
+        
           {previewUrl && (
             <div className="text-center mb-3">
-              <Image src={previewUrl} alt="Vista previa" fluid rounded style={{ maxHeight: '200px' }} />
+              <Image src={previewUrl} alt="Vista previa" fluid rounded style={{ maxHeight: "200px" }} />
             </div>
           )}
 
-        
+      
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
               placeholder="Título del artículo"
-              value={title}
-              onChange={(e) => settitle(e.target.value)}
+              value={formulario.title}
+              onChange={(e) => updateField("title")(e.target.value)}
             />
           </Form.Group>
 
-     
+       
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
-              placeholder="precio"
-              value={price}
-              onChange={(e) => setprice(e.target.value)}
+              placeholder="Precio"
+              value={formulario.price}
+              onChange={(e) => updateField("price")(e.target.value)}
             />
           </Form.Group>
 
-         
+          
           <Form.Group className="mb-3">
             <Form.Select
-              value={category}
-              onChange={(e) => setcategory(e.target.value)}
+              value={formulario.category}
+              onChange={(e) => updateField("category")(e.target.value)}
             >
               <option value="">Categoría</option>
               <option value="Mujer">Mujer</option>
@@ -140,21 +137,21 @@ useEffect(() => {
             </Form.Select>
           </Form.Group>
 
-      
+   
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
               placeholder="Ubicación"
-              value={location}
-              onChange={(e) => setlocation(e.target.value)}
+              value={formulario.location}
+              onChange={(e) => updateField("location")(e.target.value)}
             />
           </Form.Group>
 
       
           <Form.Group className="mb-3">
             <Form.Select
-              value={condition}
-              onChange={(e) => setcondition(e.target.value)}
+              value={formulario.condition}
+              onChange={(e) => updateField("condition")(e.target.value)}
             >
               <option value="">Estado</option>
               <option value="Nuevo">Nuevo</option>
@@ -168,22 +165,23 @@ useEffect(() => {
             <Form.Control
               as="textarea"
               rows={3}
-              value={description}
-              onChange={(e) => setdescription(e.target.value)}
+              value={formulario.description}
+              onChange={(e) => updateField("description")(e.target.value)}
             />
           </Form.Group>
 
-         
+       
           <div className="d-grid">
             <Button className="publish-button" type="submit">
-              Publicar
+              {modoEdicion ? "Actualizar Artículo" : "Publicar Artículo"}
             </Button>
           </div>
         </Form>
       </Card>
     </Container>
   );
-}
+};
 
 export default AddPost;
+
 
