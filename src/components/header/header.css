@@ -1,5 +1,5 @@
 .header{
-  background-image:url(/public/imgs/Header.png);
+  background-image:url(/imgs/Header.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -13,7 +13,7 @@
 }
 
 .headerWomen{
-  background-image:url(/public/imgs/headerMujer.png);
+  background-image:url(/imgs/headerMujer.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -27,7 +27,7 @@
 }
 
 .headerMen{
-  background-image:url(/public/imgs/headerhombre.png);
+  background-image:url(/imgs/headerhombre.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -41,7 +41,7 @@
 }
 
 .headerChildren{
-  background-image:url(/public/imgs/HeaderNiños.png);
+  background-image:url(/imgs/HeaderNiños.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -54,7 +54,7 @@
   text-align: center;
 }
 .headeraccesories{
-  background-image:url(/public/imgs/HeaderAccesorios.png);
+  background-image:url(/imgs/HeaderAccesorios.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
