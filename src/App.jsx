@@ -6,7 +6,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import Account from './pages/Account'
@@ -24,15 +24,18 @@ import PageNotifications from './pages/PageNotifications'
 import { UserContext } from "./context/UserContext"
 import { SearchProvider } from './context/SearchContext'
 import EditPost from './pages/EditPost'
+import { articulos } from './mockData/articulos'
+
 
 
 function App() {
    
    const {isAuthenticated} = useContext(UserContext) 
+   const [myArticulo, setMyArticulo]= useState(articulos)
    const handleAgregarProducto = (nuevoArticulo) => {
-    const nuevoId = articulos.length + 1;
+    const nuevoId = myArticulo.length + 1;
     const articuloConId = { ...nuevoArticulo, id: nuevoId };
-    setArticulos((prev) => [...prev, articuloConId]);
+    setMyArticulo((prev) => [...prev, articuloConId]);
   };
 
   return (

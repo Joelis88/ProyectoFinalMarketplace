@@ -11,6 +11,7 @@ import { UserContext } from "../context/UserContext";
 const EditPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const { user } = useContext(UserContext);
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);

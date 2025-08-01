@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect } from "react";
+import API_CONFIG from "../config/api";
+
 
 const UserContext = createContext();
 
@@ -15,15 +17,15 @@ const getProfile = async () => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:3001/api/profile", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await fetch(`${API_CONFIG.BASE_URL}profile`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
     const data = await res.json();
-    console.log("Datos del perfil:", data);
+   
 
     if (!res.ok) {
       throw new Error(data.error || "Error al obtener el perfil");
@@ -44,14 +46,14 @@ const getProfile = async () => {
 
   const updateProfile = async (profileData) => {
   try {
-    const res = await fetch("http://localhost:3001/api/profile", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(profileData),
-    });
+    const res = await fetch(`${API_CONFIG.BASE_URL}profile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(profileData),
+      });
 
     const data = await res.json();
 
@@ -70,11 +72,11 @@ const getProfile = async () => {
   const login = async (email, password) => {
   try {
     console.log("Enviando datos de registro:", { email, password });
-    const response = await fetch("http://localhost:3001/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(`${API_CONFIG.BASE_URL}auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
     const data = await response.json(); 
     console.log("Respuesta del backend:", data);
@@ -106,12 +108,11 @@ setTimeout(() => {
 
   const register = async (email, password, first_name, last_name, phone, address) => {
     try {
-      const response = await fetch("http://localhost:3001/api/auth/register", {
+      const response = await fetch(`${API_CONFIG.BASE_URL}auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, first_name, last_name, phone, address }),
       });
-
        if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.error || "Registro fallido");

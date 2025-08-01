@@ -1,11 +1,10 @@
 import "./post.css";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, Card, Container, Image } from "react-bootstrap";
 import { FaUpload } from "react-icons/fa";
-import { UserContext } from "../../context/UserContext";
+
 
 const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
-  const { user } = useContext(UserContext) || {};
 
   const [formulario, setFormulario] = useState({
     title: "",

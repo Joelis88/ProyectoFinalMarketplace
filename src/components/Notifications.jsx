@@ -4,11 +4,11 @@ import { notificaciones } from '../mockData/notificaciones';
 import { UserContext } from '../context/UserContext';
 
 const Notifications = () => {
-  const { user } = useContext(UserContext);
+  useContext(UserContext);
 
-  // Filtrar notificaciones solo de los artículos del usuario logueado
+  
   const notificacionesUsuario = notificaciones.filter(
-    () => user?.nombre === "Juan Pérez"
+   
   );
 
   return (
