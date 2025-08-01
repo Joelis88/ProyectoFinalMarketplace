@@ -36,7 +36,8 @@ function ProductView() {
             <ContactSeller
               vendedor={articulo.vendedor}
               email={articulo.email}
-              sellerId={articulo.user_id}
+              productId={articulo.id} 
+              productTitle={articulo.title}
             />
           )}
         </Col>

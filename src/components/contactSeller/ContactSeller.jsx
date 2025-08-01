@@ -4,8 +4,8 @@ import { UserContext } from '../../context/UserContext'
 import ApiService from '../../services/ApiService'
 import './ContactSeller.css'; 
 
-function ContactSeller({ vendedor, email, productId, productTitle }) {
-  const { isAuthenticated, user } = useContext(UserContext);
+function ContactSeller({ vendedor, productId }) {
+  const { isAuthenticated} = useContext(UserContext);
   const [mensaje, setMensaje] = useState('');
   const [status, setStatus] = useState(null);
   
@@ -16,6 +16,7 @@ function ContactSeller({ vendedor, email, productId, productTitle }) {
 };
 
   const iniciales = getIniciales(vendedor);
+
   const handleEnviarMensaje = async (e) => {
     e.preventDefault();
 
@@ -29,9 +30,9 @@ function ContactSeller({ vendedor, email, productId, productTitle }) {
       });
 
       
-      window.location.href = `mailto:${email}?subject=Interesado en tu publicación "${productTitle}"&body=${mensaje}`;
+      // window.location.href = `mailto:${email}?subject=Interesado en tu publicación "${productTitle}"&body=${mensaje}`;
 
-      setStatus('Mensaje enviado y notificación creada');
+      setStatus('Mensaje enviado');
       setMensaje('');
     } catch (err) {
       console.error(err);

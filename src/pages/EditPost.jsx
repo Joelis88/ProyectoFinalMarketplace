@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import AddPostForm from "../components/post/AddPost"; 
 import { UserContext } from "../context/UserContext";
+import API_CONFIG from "../config/api";
 
 
 
@@ -20,7 +21,7 @@ const EditPost = () => {
     const obtenerProducto = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch(`http://localhost:3001/api/products/${id}`, {
+        const res = await fetch(`${API_CONFIG.BASE_URL}products/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -45,7 +46,7 @@ const EditPost = () => {
   const handleActualizar = async (datosActualizados) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3001/api/products/${id}`, {
+      const res = await fetch(`${API_CONFIG.BASE_URL}products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

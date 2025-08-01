@@ -6,7 +6,9 @@ import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
+import API_CONFIG from "../../config/api";
 import "./CardProducto.css";
+
 
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://localhost:3001/api/products/${articulo.id}`, {
+    const res = await fetch(`${API_CONFIG.BASE_URL}products/${articulo.id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import { UserContext } from '../context/UserContext';
-import ApiService from '../../services/api'
+import ApiService from '../services/ApiService';
 
 const Notifications = () => {
+  // eslint-disable-next-line no-unused-vars
   const { user } = useContext(UserContext);
   const [notificaciones, setNotificaciones] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +39,7 @@ const Notifications = () => {
                 <Card.Body>
                   <Card.Title>
                     <i className="fa-solid fa-bell me-2 text-info "></i>
-                    <strong>{n.created_by_name || 'Comprador anónimo'}</strong>
+                    <strong>{n.user|| 'Comprador anónimo'}</strong>
                   </Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     preguntó por <em>{n.product_title}</em>

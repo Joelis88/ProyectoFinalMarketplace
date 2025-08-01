@@ -1,7 +1,7 @@
 import "./post.css";
 import { useState, useEffect } from "react";
 import { Form, Button, Card, Container, Image } from "react-bootstrap";
-import { FaUpload } from "react-icons/fa";
+// import { FaUpload } from "react-icons/fa";
 
 
 const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
@@ -39,18 +39,18 @@ const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
 }, [productoInicial, modoEdicion]);
 
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result);
-        setImageUrl("");
-        setFormulario((prev) => ({ ...prev, image_url: reader.result }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setPreviewUrl(reader.result);
+  //       setImageUrl("");
+  //       setFormulario((prev) => ({ ...prev, image_url: reader.result }));
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleUrlChange = (e) => {
     const url = e.target.value;
@@ -76,7 +76,7 @@ const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
 
         <Form onSubmit={handleSubmit}>
          
-          <Form.Group className="mb-3 text-center">
+          {/* <Form.Group className="mb-3 text-center">
             <Form.Label htmlFor="upload-image" className="btn btn-outline-secondary">
               <FaUpload className="me-2" /> Subir desde tu dispositivo
             </Form.Label>
@@ -86,13 +86,13 @@ const AddPost = ({ onAgregar, productoInicial = {}, modoEdicion = false }) => {
               style={{ display: "none" }}
               onChange={handleFileChange}
             />
-          </Form.Group>
+          </Form.Group> */}
 
          
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
-              placeholder="O pega una URL de imagen"
+              placeholder="Pega una URL de imagen"
               value={imageUrl}
               onChange={handleUrlChange}
             />
