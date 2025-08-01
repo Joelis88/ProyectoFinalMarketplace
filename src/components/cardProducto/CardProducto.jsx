@@ -7,7 +7,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
 import API_CONFIG from "../../config/api";
-import "./CardProducto.css";
+import "../cardProducto/cardProducto.css";
 
 
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
