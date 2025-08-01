@@ -5,7 +5,10 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../utils/formatPrice";
+import API_CONFIG from "../../config/api";
 import "./CardProducto.css";
+
 
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
   const navigate = useNavigate();
@@ -14,7 +17,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
 
   const [liked, setLiked] = useState(false);
 
-  const esPropietario = user?.nombre === articulo.vendedor;
+  const esPropietario = user?.id === articulo.user_id;
 
   useEffect(() => {
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
@@ -41,7 +44,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://localhost:3001/api/products/${articulo.id}`, {
+    const res = await fetch(`${API_CONFIG.BASE_URL}products/${articulo.id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -86,7 +89,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
             <Card.Text>{articulo.description}</Card.Text>
             <ListGroup className="list-group-flush mb-3">
               <ListGroup.Item>
-                <i className="fa-solid fa-dollar-sign me-2"></i>{articulo.price}
+                <i className="fa-solid fa-dollar-sign me-2"></i>{formatPrice(articulo.price)}
               </ListGroup.Item>
               <ListGroup.Item>
                 <i className="fa-solid fa-check me-2"></i>{articulo.condition}
@@ -117,7 +120,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
             </>
           ) : isAuthenticated && !esPropietario ? (
             <Link
-              to={`/products/${articulo.id}`}
+              to={`/products/${articulo.user_id}`}
               className="btn btn-outline-danger rounded-pill px-4 shadow-sm"
             >
               Contactar

@@ -7,9 +7,11 @@ const ProfileWelcomePanel = () => {
 
   if (!user) return <p className="text-muted">Usuario no autenticado</p>;
 
-  const getInitials = (last_name) => {
-    return `${last_name?.[0] || ""}`.toUpperCase();
-  };
+  const getInitials = (first_name, last_name) => {
+  const firstInitial = first_name?.[0]?.toUpperCase() || "";
+  const lastInitial = last_name?.[0]?.toUpperCase() || "";
+  return `${firstInitial}${lastInitial}`;
+};
 
   return (
     <Card className="p-4 shadow-sm w-75">
@@ -32,15 +34,15 @@ const ProfileWelcomePanel = () => {
                 backgroundColor: "#17a2b8",
               }}
             >
-              {getInitials(user.last_name)}
+              {getInitials(user.first_name, user.last_name)}
             </div>
           )}
         </Col>
         <Col>
           <h4 className="mb-1">Bienvenido {user?.first_name} {user?.last_name}</h4>
           <p className="mb-0">Email: {user.email}</p>
-          <p className="mb-0">Ciudad: {user.ciudad}</p>
-          <p className="mb-2">Teléfono: {user.telefono}</p>
+          <p className="mb-0">Ciudad: {user.address}</p>
+          <p className="mb-2">Teléfono: {user.phone}</p>
           <div>
             <Button variant="link" href="/profileEdit" className="me-2">
               Editar perfil

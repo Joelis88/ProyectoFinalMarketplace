@@ -97,10 +97,6 @@ const Login = () => {
                 {error.password && <small className="text-danger">{error.password}</small>}
               </Form.Group>
 
-              <Form.Group className="mb-4" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Recuérdame" />
-              </Form.Group>
-
               <div className="d-grid mb-3">
                 <Button variant="dark" size="lg" type="submit">
                   Ingresar

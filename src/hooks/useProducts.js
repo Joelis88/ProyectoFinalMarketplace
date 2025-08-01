@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import ApiService from '../services/api';
+import ApiService from '../services/ApiService';
 
 export const useProducts = (filters = {}) => {
   const [products, setProducts] = useState([]);

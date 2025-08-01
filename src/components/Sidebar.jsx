@@ -1,10 +1,9 @@
 import { Nav } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react"
 import { UserContext } from "../context/UserContext";
 
-const Sidebar = ({ onLogout }) => {
-  const navigate = useNavigate();
+const Sidebar = () => {
+  
 
   const { logout } = useContext(UserContext)
 

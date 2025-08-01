@@ -9,6 +9,8 @@ const Register = () => {
   const navigate = useNavigate()
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
+  const [ciudad, setCiudad] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [pwOk, setPwOk] = useState("")
@@ -19,7 +21,7 @@ const Register = () => {
   const validarDatos = async (e) => {
     e.preventDefault()
 
-    let validar = { email: "", password: "", pwOk: "" }
+    let validar = { email: "", password: "", pwOk: "", ciudad: "", telefono: "" }
 
     // Validación email
     if (!email.trim()) {
@@ -42,15 +44,23 @@ const Register = () => {
       validar.pwOk = "Las contraseñas no coinciden"
     }
 
+    // Validación ciudad y telefono
+    if (!ciudad.trim()) {
+  validar.ciudad = "La ciudad es obligatoria";
+    }
+   if (!telefono.trim() || !/^[0-9]{8,15}$/.test(telefono)) {
+   validar.telefono = "Ingresa un número válido";
+  }
+
     setError(validar)
 
     // Si hay errores, no enviar el formulario
-    if (validar.email || validar.password || validar.pwOk) {
+    if (validar.email || validar.password || validar.pwOk  || validar.ciudad || validar.telefono) {
       return
     }
 
     try {
-      await register(email, password, nombre, apellido)
+      await register(email, password, nombre, apellido, telefono, ciudad)
       setFormEnviado(true)
       setMensajeError("")
       setTimeout(() => navigate("/profile"), 2000) // Redirigir al perfil
@@ -125,15 +135,28 @@ const Register = () => {
         />
         {error.pwOk && <small className="text-danger">{error.pwOk}</small>}
       </Form.Group>
+      <div className="row g-3 mb-3">
+        <div className="col-md-6">
+          <Form.Control
+            type="text"
+            placeholder="Ciudad"
+            size="lg"
+            onChange={(e) => setCiudad(e.target.value)}
+          />
+          {error.ciudad && <small className="text-danger">{error.ciudad}</small>}
+        </div>
+        <div className="col-md-6">
+          <Form.Control
+            type="text"
+            placeholder="Telefono"
+            size="lg"
+            onChange={(e) => setTelefono(e.target.value)}
+          />
+          {error.telefono && <small className="text-danger">{error.telefono}</small>}
+        </div>
+      </div>
 
-      <Form.Group className="mb-4">
-        <Form.Check
-          required
-          label="Acepto los términos y condiciones"
-          feedback="Debes aceptar antes de continuar."
-          feedbackType="invalid"
-        />
-      </Form.Group>
+  
 
       <div className="d-grid">
         <Button variant="dark" size="lg" type="submit">Crear cuenta</Button>

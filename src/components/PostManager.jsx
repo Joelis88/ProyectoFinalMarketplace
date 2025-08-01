@@ -4,7 +4,7 @@ import CardProducto from "../components/cardProducto/CardProducto";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ApiService from "../services/api"; 
+import ApiService from "../services/ApiService"; 
 import { UserContext } from '../context/UserContext';
 
 const PostManager = () => {
