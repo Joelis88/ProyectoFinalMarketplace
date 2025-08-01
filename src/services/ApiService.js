@@ -74,6 +74,16 @@ class ApiService {
     const response = await this.client.delete(`/products/${id}`);
     return response.data;
   }
+  //notificaciones al vendedor
+  async createNotification(data) {
+  const response = await this.client.post("/notifications", data);
+  return response.data;
+}
+
+async getNotifications() {
+  const response = await this.client.get("/notifications");
+  return response.data;
+}
 }
 
 export default new ApiService();

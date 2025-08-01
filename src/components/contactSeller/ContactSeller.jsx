@@ -1,10 +1,13 @@
-import { Card, Form } from 'react-bootstrap';
-import { useContext } from 'react';
+import { Card, Form, Button, Alert } from 'react-bootstrap';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext'
+import ApiService from '../../services/ApiService'
 import './ContactSeller.css'; 
 
-function ContactSeller({ vendedor, email }) {
-  const {  isAuthenticated } = useContext(UserContext);
+function ContactSeller({ vendedor, email, productId, productTitle }) {
+  const { isAuthenticated, user } = useContext(UserContext);
+  const [mensaje, setMensaje] = useState('');
+  const [status, setStatus] = useState(null);
   
  const getIniciales = (nombreCompleto) => {
   if (!nombreCompleto || typeof nombreCompleto !== 'string') return '';
@@ -13,6 +16,28 @@ function ContactSeller({ vendedor, email }) {
 };
 
   const iniciales = getIniciales(vendedor);
+  const handleEnviarMensaje = async (e) => {
+    e.preventDefault();
+
+    if (!mensaje.trim()) return;
+
+    try {
+    
+      await ApiService.createNotification({
+        product_id: productId,
+        message: mensaje
+      });
+
+      
+      window.location.href = `mailto:${email}?subject=Interesado en tu publicación "${productTitle}"&body=${mensaje}`;
+
+      setStatus('Mensaje enviado y notificación creada');
+      setMensaje('');
+    } catch (err) {
+      console.error(err);
+      setStatus('Hubo un error al enviar el mensaje');
+    }
+  };
 
   return (
     <Card className="shadow-sm mt-4" style={{ width: '100%', borderRadius: '0.75rem' }}>
@@ -23,12 +48,12 @@ function ContactSeller({ vendedor, email }) {
           <div className="avatar-iniciales me-3">
             {iniciales}
           </div>
-          <div className="fw-bold fs-5">
-  {vendedor}
-</div>
+          <div className="fw-bold fs-5">{vendedor}</div>
         </div>
 
-        <Form>
+        {status && <Alert variant="info">{status}</Alert>}
+
+        <Form onSubmit={handleEnviarMensaje}>
           <Form.Group className="mb-3" controlId="formMensaje">
             <Form.Label className="fw-semibold">Enviar mensaje</Form.Label>
             <Form.Control
@@ -36,24 +61,19 @@ function ContactSeller({ vendedor, email }) {
               rows={3}
               placeholder="Escribe tu mensaje aquí"
               className="shadow-sm"
+              value={mensaje}
+              onChange={(e) => setMensaje(e.target.value)}
+              required
             />
           </Form.Group>
           <div className="d-grid">
-  <a
-    href={
-      isAuthenticated
-        ? `mailto:${email}?subject=Interesado%20en%20tu%20publicación&body=Hola%20${vendedor},%20me%20interesa%20tu%20artículo.`
-        : undefined
-    }
-    className={`btn btn-personalizado text-white text-center ${!isAuthenticated ? 'disabled' : ''}`}
-    style={{ textDecoration: 'none', pointerEvents: isAuthenticated ? 'auto' : 'none' }}
-  >
-    {isAuthenticated ? 'Enviar mensaje' : 'Inicia sesión para enviar'}
-  </a>
-</div>
-
-
-          
+            <Button 
+              type="submit" 
+              className="btn btn-personalizado text-white"
+              disabled={!isAuthenticated}>
+              {isAuthenticated ? 'Enviar mensaje' : 'Inicia sesión para enviar'}
+            </Button>
+          </div>
         </Form>
       </Card.Body>
     </Card>
@@ -61,5 +81,3 @@ function ContactSeller({ vendedor, email }) {
 }
 
 export default ContactSeller;
-
-
