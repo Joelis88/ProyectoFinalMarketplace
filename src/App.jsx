@@ -53,7 +53,7 @@ function App() {
         <Route path="/hombre" element={<ProtectedRoute><Men /></ProtectedRoute>} />
         <Route path="/niños" element={<ProtectedRoute><PageChildren /></ProtectedRoute>} />
         <Route path="/accesorios" element={<ProtectedRoute><Accessories /></ProtectedRoute>} />
-        <Route path="/products/:id" element={<ProductView />} />
+        <Route path="/products/:id" element={<ProtectedRoute><ProductView /></ProtectedRoute>} />
         <Route path="/edit/:id" element={<EditPost />} />
         <Route path="/add" element={isAuthenticated ? <AddPost onAgregar={handleAgregarProducto} /> : <Navigate to='/login' />} />
         <Route path="/favoritos" element={isAuthenticated ? <Favorites /> : <Navigate to='/login' />} />
