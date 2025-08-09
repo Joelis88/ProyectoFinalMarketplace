@@ -39,8 +39,9 @@ const Notifications = () => {
                 <Card.Body>
                   <Card.Title>
                     <i className="fa-solid fa-bell me-2 text-info "></i>
-                    {/* NOMBRE DE LA PERSONA INTERESADA EN UN PRODUCTO */}
-                    <strong>{n.user || 'Persona Interesada'}</strong>
+                    {/* NOMBRE & EMAIL DE LA PERSONA INTERESADA EN UN PRODUCTO */}
+                    <strong>{`${n.interested_first_name} ${n.interested_last_name} (${n.interested_email})` || 'Persona Interesada'}</strong>
+                    {/* <strong>{n.user || 'Persona Interesada'}</strong> */}
                   </Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     preguntó por <em>{n.product_title}</em>
