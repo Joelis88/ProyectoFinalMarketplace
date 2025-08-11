@@ -84,6 +84,17 @@ async getNotifications() {
   const response = await this.client.get("/notifications");
   return response.data;
 }
+
+async markNotificationAsRead(id) {
+  const response = await this.client.put(`/notifications/${id}/read`);
+  return response.data;
+}
+
+async deleteNotification(id) {
+  const response = await this.client.delete(`/notifications/${id}`);
+  return response.data;
+}
+
 }
 
 export default new ApiService();

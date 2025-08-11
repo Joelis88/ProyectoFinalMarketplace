@@ -21,7 +21,7 @@ function PageNotifications() {
         </Col>
 
         <Col md={10}>
-          <Row className="g-4">
+          <Row className="g-1">
          
               <Col>
                 <Notifications />
