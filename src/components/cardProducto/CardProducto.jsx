@@ -16,7 +16,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
 
   const esPropietario = user?.id === articulo.user_id;
 
-  // Verificar si el producto está en favoritos al cargar el componente
+  
   useEffect(() => {
     const checkFavorite = async () => {
       if (isAuthenticated) {
@@ -25,12 +25,11 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
           setLiked(response.data.is_favorite);
         } catch (err) {
           console.error("Error verificando favorito:", err);
-          // Si hay error, mantener el estado actual o usar localStorage como fallback
           const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
           setLiked(favoritos.includes(articulo.id));
         }
       } else {
-        // Si no está autenticado, usar localStorage como fallback
+   
         const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
         setLiked(favoritos.includes(articulo.id));
       }
@@ -41,7 +40,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
 
   const toggleLike = async () => {
     if (!isAuthenticated) {
-      // Si no está autenticado, usar localStorage como fallback
+     
       const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
       const nuevosFavoritos = liked
         ? favoritos.filter((id) => id !== articulo.id)
@@ -58,11 +57,11 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
       } else {
         await ApiService.addToFavorites(articulo.id);
       }
-      setLiked(!liked); // Solo actualizar el estado si la operación fue exitosa
+      setLiked(!liked); 
     } catch (err) {
       console.error("Error actualizando favorito:", err);
       
-      // Mostrar mensaje de error al usuario
+      
       if (err.response?.status === 400) {
         alert("Este producto ya está en tus favoritos o no se pudo procesar la solicitud.");
       } else if (err.response?.status === 404) {
@@ -81,7 +80,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
     if (!confirm("¿Estás seguro de que deseas eliminar este artículo?")) return;
 
     try {
-      // Usar ApiService en lugar de fetch directo para consistencia
+     
       await ApiService.deleteProduct(articulo.id);
       alert("Producto eliminado exitosamente");
       window.location.reload();
@@ -93,7 +92,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
 
   return (
     <div className="card-container" style={{ position: "relative", width: "18rem" }}>
-      {!modoMisPublicaciones && !esPropietario && (
+      {isAuthenticated && !modoMisPublicaciones && !esPropietario && (
         <div className="heart-icon" onClick={toggleLike}>
           <i className={`${liked ? 'fas' : 'far'} fa-heart`}></i>
         </div>
