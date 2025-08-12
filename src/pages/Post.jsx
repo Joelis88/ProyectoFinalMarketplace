@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import ApiService from "../services/ApiService";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +13,7 @@ import { useState } from "react";
 const Post = () => {
   const { user } = useContext(UserContext); 
   const [articulos, setArticulos] = useState([]);
+  const navigate = useNavigate();
   const handleAgregarArticulo = async (nuevoArticulo) => {
     try {
       // Mapear los campos del formulario a los campos esperados por la API
@@ -30,6 +32,7 @@ const Post = () => {
       
       if (response.data) {
         alert('¡Artículo publicado exitosamente!');
+        navigate("/publicaciones");
         setArticulos([response.data, ...articulos]);
       }
     } catch (error) {

@@ -146,7 +146,7 @@ const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
             </>
           ) : isAuthenticated && !esPropietario ? (
             <Link
-              to={`/products/${articulo.user_id}`}
+              to={`/products/${articulo.id}`}
               className="btn btn-outline-danger rounded-pill px-4 shadow-sm"
             >
               Contactar
