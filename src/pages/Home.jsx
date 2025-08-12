@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import CardProducto from "../components/cardProducto/CardProducto";
 import Header from "../components/header/Header";
 import Container from "react-bootstrap/Container";
@@ -6,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import CategoriesNav from "../components/categoriesNav/categoriesNav";
 import { useProducts } from "../hooks/useProducts";
 import { useSearch } from "../context/SearchContext";
-import { articulos as mockArticulos } from '../mockData/articulos';
+
 
 
 
@@ -17,7 +18,7 @@ function Home() {
   if (loading) return <div>Cargando productos...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const todosLosArticulos = [ ...mockArticulos, ...nuevosArticulos];
+  const todosLosArticulos = [  ...nuevosArticulos];
 
   const articulosFiltrados = todosLosArticulos.filter((articulo) =>
     articulo.title.toLowerCase().includes(busqueda.toLowerCase())

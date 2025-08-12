@@ -3,7 +3,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardProducto from "../../components/cardProducto/CardProducto";
 import CategoriesNav from "../../components/categoriesNav/categoriesNav";
-import { articulos as mockArticulos } from "../../mockData/articulos";
 import { useProducts } from "../../hooks/useProducts";
 import { filtrarPorCategoria } from "../../components/utils/filterByCategory";
 import HeaderAccessories from "../../components/header/HeaderAccessories";
@@ -12,7 +11,7 @@ import { useSearch } from "../../context/SearchContext";
 function Accessories() {
   const { busqueda } = useSearch();
   const { products: nuevosArticulos, loading, error } = useProducts();
-  const todosLosArticulos = [...mockArticulos, ...nuevosArticulos];
+  const todosLosArticulos = [ ...nuevosArticulos];
   const articulosFiltrados = filtrarPorCategoria(
     todosLosArticulos,
     "accesorios",

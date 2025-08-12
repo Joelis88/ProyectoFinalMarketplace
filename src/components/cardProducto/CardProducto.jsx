@@ -6,71 +6,98 @@ import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
-import API_CONFIG from "../../config/api";
+import ApiService from "../../services/ApiService"; 
 import "../cardProducto/cardProducto.css";
-
 
 const CardProducto = ({ articulo, modoMisPublicaciones = false }) => {
   const navigate = useNavigate();
-
   const { user, isAuthenticated } = useContext(UserContext);
-
   const [liked, setLiked] = useState(false);
 
   const esPropietario = user?.id === articulo.user_id;
 
+  // Verificar si el producto está en favoritos al cargar el componente
   useEffect(() => {
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-    setLiked(favoritos.includes(articulo.id));
-  }, [articulo.id]);
+    const checkFavorite = async () => {
+      if (isAuthenticated) {
+        try {
+          const response = await ApiService.checkFavorite(articulo.id);
+          setLiked(response.data.is_favorite);
+        } catch (err) {
+          console.error("Error verificando favorito:", err);
+          // Si hay error, mantener el estado actual o usar localStorage como fallback
+          const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+          setLiked(favoritos.includes(articulo.id));
+        }
+      } else {
+        // Si no está autenticado, usar localStorage como fallback
+        const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        setLiked(favoritos.includes(articulo.id));
+      }
+    };
+    
+    checkFavorite();
+  }, [articulo.id, isAuthenticated]);
 
-  const toggleLike = () => {
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-    const nuevosFavoritos = liked
-      ? favoritos.filter((id) => id !== articulo.id)
-      : [...favoritos, articulo.id];
+  const toggleLike = async () => {
+    if (!isAuthenticated) {
+      // Si no está autenticado, usar localStorage como fallback
+      const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+      const nuevosFavoritos = liked
+        ? favoritos.filter((id) => id !== articulo.id)
+        : [...favoritos, articulo.id];
 
-    localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
-    setLiked(!liked);
+      localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+      setLiked(!liked);
+      return;
+    }
+
+    try {
+      if (liked) {
+        await ApiService.removeFromFavorites(articulo.id);
+      } else {
+        await ApiService.addToFavorites(articulo.id);
+      }
+      setLiked(!liked); // Solo actualizar el estado si la operación fue exitosa
+    } catch (err) {
+      console.error("Error actualizando favorito:", err);
+      
+      // Mostrar mensaje de error al usuario
+      if (err.response?.status === 400) {
+        alert("Este producto ya está en tus favoritos o no se pudo procesar la solicitud.");
+      } else if (err.response?.status === 404) {
+        alert("Producto no encontrado.");
+      } else {
+        alert("Error al actualizar favoritos. Inténtalo de nuevo.");
+      }
+    }
   };
 
   const handleEditar = () => {
-  navigate(`/edit/${articulo.id}`);
-};
+    navigate(`/edit/${articulo.id}`);
+  };
 
   const handleEliminar = async () => {
-  if (!confirm("¿Estás seguro de que deseas eliminar este artículo?")) return;
+    if (!confirm("¿Estás seguro de que deseas eliminar este artículo?")) return;
 
-  try {
-    const token = localStorage.getItem("token");
-
-    const res = await fetch(`${API_CONFIG.BASE_URL}products/${articulo.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await res.json();
-
-    if (res.ok) {
+    try {
+      // Usar ApiService en lugar de fetch directo para consistencia
+      await ApiService.deleteProduct(articulo.id);
       alert("Producto eliminado exitosamente");
       window.location.reload();
-    } else {
-      alert(data.error || "No se pudo eliminar");
+    } catch (err) {
+      console.error("Error al eliminar:", err);
+      alert(err.response?.data?.error || "No se pudo eliminar el producto");
     }
-  } catch (err) {
-    console.error("Error al eliminar:", err);
-    alert("Ocurrió un error");
-  }
-};
+  };
 
   return (
     <div className="card-container" style={{ position: "relative", width: "18rem" }}>
-      {isAuthenticated && !modoMisPublicaciones && !esPropietario && (
-  <div className="heart-icon" onClick={toggleLike}>
-       <i className={`${liked ? 'fas' : 'far'} fa-heart`}></i>
-  </div>
-)}
+      {!modoMisPublicaciones && !esPropietario && (
+        <div className="heart-icon" onClick={toggleLike}>
+          <i className={`${liked ? 'fas' : 'far'} fa-heart`}></i>
+        </div>
+      )}
 
       <Card className="shadow-sm">
         <Link to={`/products/${articulo.id}`} className="text-decoration-none text-dark">

@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 import CardProducto from "../../components/cardProducto/CardProducto";
 import HeaderWomen from "../../components/header/HeaderWomen";
 import CategoriesNav from "../../components/categoriesNav/categoriesNav";
-import { articulos as mockArticulos } from "../../mockData/articulos";
 import { useProducts } from "../../hooks/useProducts";
 import { useSearch } from "../../context/SearchContext";
 import { filtrarPorCategoria } from "../../components/utils/filterByCategory";
@@ -12,7 +11,7 @@ import { filtrarPorCategoria } from "../../components/utils/filterByCategory";
 function Women() {
   const { busqueda } = useSearch();
   const { products: nuevosArticulos, loading, error } = useProducts();
-  const todosLosArticulos = [...mockArticulos, ...nuevosArticulos];
+  const todosLosArticulos = [ ...nuevosArticulos];
   const articulosFiltrados = filtrarPorCategoria(
     todosLosArticulos,
     "mujer",
