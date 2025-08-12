@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
-
 import Sidebar from "../components/Sidebar";
 import CardProducto from "../components/cardProducto/CardProducto";
 import { UserContext } from "../context/UserContext";
@@ -44,7 +43,7 @@ if (!shouldFetch) {
           ) : articulos.length === 0 ? (
             <p>No tienes artículos publicados.</p>
           ) : (
-            <Row className="g-4">
+            <Row className="g-4 mb-5">
               {articulos.map((art) => (
                 <Col md={4} key={art.id}>
                   <CardProducto articulo={art} modoMisPublicaciones />
