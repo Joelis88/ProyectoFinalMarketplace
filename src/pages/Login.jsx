@@ -43,9 +43,19 @@ const Login = () => {
         setFormEnviado(true)
         navigate("/profile")
       } catch (err) {
-  setMensajeError(err.message || "Error al iniciar sesión")
+  let mensaje;
 
-      }
+  if (err.message === "Failed to fetch") {
+    mensaje = "No se pudo conectar con el servidor. Intenta más tarde.";
+  } else if (err.message === "Unauthorized") {
+    mensaje = "Correo o contraseña incorrectos.";
+  } else {
+    mensaje = err.message || "Error al iniciar sesión";
+  }
+
+  setMensajeError(mensaje);
+}
+
     } else {
       setFormEnviado(false)
     }
